@@ -225,22 +225,100 @@ public class AuthManager : MonoBehaviour
     }
 
     IEnumerator ForgotRequest(string email,
-                              System.Action<bool, string> callback)
+                            System.Action<bool, string> callback)
     {
-        string json = "{\"email\":\"" + email + "\"}";
+        // This endpoint sends a 6 digit OTP code not a link
+        string json = "{\"email\":\"" + email + "\"," +
+                      "\"create_user\":false}";
+
+        string url = supabaseURL + "/auth/v1/otp";
+        var request = new UnityWebRequest(url, "POST");
+
+        byte[] body = Encoding.UTF8.GetBytes(json);
+        request.uploadHandler = new UploadHandlerRaw(body);
+        request.downloadHandler = new DownloadHandlerBuffer();
+
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("apikey", supabaseKey);
+        request.SetRequestHeader("Authorization", "Bearer " + supabaseKey);
+
+        yield return request.SendWebRequest();
+
+        Debug.Log("Forgot RAW: " + request.downloadHandler.text);
+
+        if (request.responseCode == 200)
+            callback(true, "OTP sent to your email!");
+        else
+            callback(false, "Email not found");
+    }
+
+
+    // ─── VERIFY OTP ─────────────────────────────────────
+    public void VerifyOTPAndReset(string email, string otp, string newPassword,
+                                  System.Action<bool, string> callback)
+    {
+        StartCoroutine(VerifyOTPRequest(email, otp, newPassword, callback));
+    }
+
+    IEnumerator VerifyOTPRequest(string email, string otp, string newPassword,
+                                 System.Action<bool, string> callback)
+    {
+        // Step 1 — Verify OTP and get access token
+        string verifyJson = "{\"email\":\"" + email + "\"," +
+                           "\"token\":\"" + otp + "\"," +
+                           "\"type\":\"magiclink\"}";
+
+        string verifyToken = "";
+        bool error = false;
+        string errorMsg = "";
 
         yield return SendRequest(
-            "/auth/v1/recover",
-            json,
+            "/auth/v1/verify",
+            verifyJson,
             "POST",
             false,
             (response) =>
             {
-                callback(true, "Password reset email sent!");
-            });
-    }
+                Debug.Log("Verify OTP RAW: " + response);
+                var data = JObject.Parse(response);
 
-    
+                if (data["code"] != null)
+                {
+                    error = true;
+                    errorMsg = data["msg"] != null
+                        ? data["msg"].ToString()
+                        : "Invalid OTP";
+                    return;
+                }
+
+                verifyToken = data["access_token"].ToString();
+            });
+
+        if (error)
+        {
+            callback(false, errorMsg);
+            yield break;
+        }
+
+        // Step 2 — Update password using the token
+        string updateJson = "{\"password\":\"" + newPassword + "\"}";
+
+        string url = supabaseURL + "/auth/v1/user";
+        var request = new UnityWebRequest(url, "PUT");
+
+        byte[] body = Encoding.UTF8.GetBytes(updateJson);
+        request.uploadHandler = new UploadHandlerRaw(body);
+        request.downloadHandler = new DownloadHandlerBuffer();
+
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("apikey", supabaseKey);
+        request.SetRequestHeader("Authorization", "Bearer " + verifyToken);
+
+        yield return request.SendWebRequest();
+
+        Debug.Log("Reset Password RAW: " + request.downloadHandler.text);
+        callback(true, "Password reset successfully!");
+    }
     // ─── SHARED REQUEST HANDLER ─────────────────────────
     IEnumerator SendRequest(string endpoint, string json,
                             string method, bool useToken,

@@ -23,6 +23,8 @@ public class AuthUI : MonoBehaviour
 
     [Header("Forgot")]
     public TMP_InputField forgotEmail;
+    public TMP_InputField otpInput;         
+    public TMP_InputField newPasswordInput;  
     public TextMeshProUGUI forgotMessage;
 
     private AuthManager auth;
@@ -72,14 +74,29 @@ public class AuthUI : MonoBehaviour
     // No EmailJS needed anymore!
     public void OnSendOTPClick()
     {
-        forgotMessage.text = "Sending reset email...";
+        forgotMessage.text = "Sending OTP...";
 
-        auth.ForgotPassword(forgotEmail.text,
+        auth.ForgotPassword(forgotEmail.text.Trim(),
         (success, message) =>
         {
             forgotMessage.text = success
-                ? "Password reset email sent! Check your inbox."
+                ? "OTP sent! Check your email."
                 : message;
+        });
+    }
+
+    public void OnVerifyOTPClick()
+    {
+        forgotMessage.text = "Verifying...";
+
+        auth.VerifyOTPAndReset(
+            forgotEmail.text.Trim(),
+            otpInput.text.Trim(),
+            newPasswordInput.text,
+        (success, message) =>
+        {
+            forgotMessage.text = message;
+            if (success) ShowLogin();
         });
     }
 
