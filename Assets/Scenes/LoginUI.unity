@@ -896,6 +896,8 @@ MonoBehaviour:
   regPassword: {fileID: 1773894722}
   registerMessage: {fileID: 368596496}
   forgotEmail: {fileID: 1689289506}
+  otpInput: {fileID: 1477095145}
+  newPasswordInput: {fileID: 789399156}
   forgotMessage: {fileID: 569025566}
 --- !u!1 &285631341
 GameObject:
