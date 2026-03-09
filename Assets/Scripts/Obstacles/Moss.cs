@@ -36,6 +36,7 @@ public class Moss : Obstacle
     }
 
     void Deactivate() {
+        StopAllCoroutines();
         mossMaterial.color = startColor;
         meshRenderer.enabled = true;
         boxCollider.enabled = true;
@@ -50,7 +51,6 @@ public class Moss : Obstacle
         while (time < duration) {
             float t = time / duration;
             color.a = Mathf.Lerp(startAlpha, 0f, t);
-            Debug.Log(color);
             mat.color = color;
             time += Time.deltaTime;
             yield return null;
