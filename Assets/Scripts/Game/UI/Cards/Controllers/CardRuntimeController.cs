@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Cards;
 using Game.CardsRuntime;
 
 namespace Game.CardsControllers
@@ -92,3 +93,4 @@ namespace Game.CardsControllers
         }
     }
 }
+
