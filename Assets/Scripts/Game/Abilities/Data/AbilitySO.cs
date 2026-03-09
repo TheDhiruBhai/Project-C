@@ -11,26 +11,16 @@ namespace Game.Abilities
         public abstract bool CanActivate(AbilityContext ctx, out string reason);
         public abstract void Activate(AbilityContext ctx);
     }
-}
 
-public enum TargetType { None, Point, WorldObject, Player }
+    public interface ITargetResolver
+    {
+        bool TryResolve(out TargetSelection sel);
+        void RenderFeedback(bool valid);
+    }
 
-public interface ITargetResolver
-{
-    bool TryResolve(out TargetSelection sel);
-    void RenderFeedback(bool valid);
-}
-
-public struct TargetSelection
-{
-    public int? targetNetId;
-    public Vector3 point;
-}
-public struct AbilityContext
-{
-    public int casterNetId;         
-    public int? targetNetId;        // optional
-    public Vector3 targetPoint;
-    public double serverTime;
-    public IWorldQuery world;       
+    public struct TargetSelection
+    {
+        public int? targetNetId;
+        public Vector3 point;
+    }
 }
