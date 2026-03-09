@@ -63,8 +63,6 @@ public class Disappearing : Obstacle
         mat.color = color;
         yield return new WaitForSeconds(2f);
         StartCoroutine(FadeIn(mat, fadeDuration));
-        Debug.Log("Fade out complete");
-
     }
 
     public IEnumerator FadeIn(Material mat, float duration)

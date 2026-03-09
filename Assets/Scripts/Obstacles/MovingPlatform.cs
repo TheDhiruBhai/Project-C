@@ -10,6 +10,7 @@ public class MovingPlatform : Obstacle
     private Transform movingBlock;
     [SerializeField]
     private float speed = 3f;
+    [SerializeField]
     private bool isPaused = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,27 +26,27 @@ public class MovingPlatform : Obstacle
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Activate();
+            Deactivate();
         }
         else if (Input.GetMouseButtonDown(1))
         {
-            Deactivate();
+            Activate();
         }
     }
 
-    void Activate() {
-        isPaused = true;
+    public void Activate() {
+        isPaused = false;
     }
 
-    void Deactivate() { 
-        isPaused = false;
+    public void Deactivate() { 
+        isPaused = true;
     }
 
     public IEnumerator Travel()
     {
         if (atStart)
         {
-            while (Vector3.Distance(movingBlock.position, endPoint.position) >= .5)
+            while (Vector3.Distance(movingBlock.position, endPoint.position) >= .1)
             {
                 while (isPaused)
                 {
@@ -60,7 +61,7 @@ public class MovingPlatform : Obstacle
         }
         else
         {
-            while (Vector3.Distance(movingBlock.position, startPoint.position) >= .5)
+            while (Vector3.Distance(movingBlock.position, startPoint.position) >= .1)
             {
                 while (isPaused)
                 {
