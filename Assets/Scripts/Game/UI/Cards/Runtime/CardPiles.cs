@@ -7,7 +7,7 @@ namespace Game.CardsRuntime
     public sealed class Deck
     {
         private readonly List<CardInstance> _cards = new List<CardInstance>();
-        private readonly System.Random _rng = new Random();
+        private readonly System.Random _rng = new System.Random();
 
         public int Count => _cards.Count;
 
@@ -65,3 +65,4 @@ namespace Game.CardsRuntime
         public void Add(CardInstance c) => _cards.Add(c);
     }
 }
+
