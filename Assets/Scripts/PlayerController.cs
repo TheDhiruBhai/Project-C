@@ -10,8 +10,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float lookSpeed = 15f;
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private float maxLookAngle = 90f;
 
     private float verticalVelocity;
+    private float currentPitch = 0f;
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector2 lookInput;
@@ -33,6 +36,9 @@ public class PlayerController : MonoBehaviour
     {
         Controls = new PlayerControls();
         controller = GetComponent<CharacterController>();
+
+        if (mainCamera == null)
+            mainCamera = Camera.main;
 
         string rebinds = PlayerPrefs.GetString("rebinds", "");
             if (!string.IsNullOrEmpty(rebinds))
@@ -74,5 +80,9 @@ public class PlayerController : MonoBehaviour
 
         float yaw = lookInput.x * lookSpeed * Time.deltaTime;
         transform.Rotate(0f, yaw, 0f);
+
+        float pitch = lookInput.y * lookSpeed * Time.deltaTime;
+        currentPitch = Mathf.Clamp(currentPitch - pitch, -maxLookAngle, maxLookAngle);
+        mainCamera.transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
     }
 }
