@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         Controls.Player.Look.canceled += _ => lookInput = Vector2.zero;
 
         Controls.Player.Jump.performed += _ => TryJump();
+
     }
 
     private void OnEnable() => Controls.Enable();
