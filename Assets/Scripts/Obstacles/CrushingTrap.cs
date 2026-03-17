@@ -54,8 +54,8 @@ public class CrushingTrap : Obstacle
             {
                 yield return null;
             }
-            rightBlock.localPosition = Vector3.MoveTowards(rightBlock.localPosition, Vector3.zero, Time.deltaTime);
-            leftBlock.localPosition = Vector3.MoveTowards(leftBlock.localPosition,Vector3.zero, Time.deltaTime);
+            rightBlock.localPosition = Vector3.MoveTowards(rightBlock.localPosition, new Vector3(0, 0, rightBlock.localPosition.z), Time.deltaTime);
+            leftBlock.localPosition = Vector3.MoveTowards(leftBlock.localPosition,new Vector3(0, 0, rightBlock.localPosition.z), Time.deltaTime);
 
             crushTime -= Time.deltaTime;
             yield return null;
