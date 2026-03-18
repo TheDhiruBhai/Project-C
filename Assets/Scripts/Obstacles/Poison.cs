@@ -1,28 +1,25 @@
 using Game.Player;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.UI;
 using UnityEngine;
 
-public class SpikeTrap : Obstacle
+public class Poison : MonoBehaviour
 {
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField]
-    private float damageAmount = 10f;
+    private int damageAmount = 5;
     [SerializeField]
     private float damageInterval = 1f;
-    private HashSet<Health> playersInTrap = new HashSet<Health>();
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private HashSet<Health> playersInPoison = new HashSet<Health>();
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,10 +27,10 @@ public class SpikeTrap : Obstacle
         //Checks if other collider is player and if it has a Health component, then starts damaging the player at intervals
         if (other.CompareTag("Player"))
         {
-           var playerHealth = other.GetComponent<Health>();
+            var playerHealth = other.GetComponent<Health>();
 
             //Checks if playerhealth is not null and if the hashset doesnt contain the player already
-            if(playerHealth != null && playersInTrap.Add(playerHealth))
+            if (playerHealth != null && playersInPoison.Add(playerHealth))
             {
                 StartCoroutine(damagePlayer(playerHealth));
             }
@@ -46,20 +43,18 @@ public class SpikeTrap : Obstacle
         if (other.CompareTag("Player"))
         {
             var playerHealth = other.GetComponent<Health>();
-            playersInTrap.Remove(playerHealth);
-          
-           
+            playersInPoison.Remove(playerHealth);
+
+
         }
     }
 
-
-
-    IEnumerator damagePlayer(Health playerHealth) {
-        while (playersInTrap.Contains(playerHealth))
+    IEnumerator damagePlayer(Health playerHealth)
+    {
+        while (playersInPoison.Contains(playerHealth))
         {
-            playerHealth.TakeDamage((int)damageAmount);
+            playerHealth.TakeDamage(damageAmount);
             yield return new WaitForSeconds(damageInterval);
         }
     }
 }
-
