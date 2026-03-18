@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
     private bool sprintHeld;
+    private bool inputReady = false;
 
     private bool IsGrounded()
     {
@@ -47,10 +49,25 @@ public class PlayerController : MonoBehaviour
         Controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         Controls.Player.Move.canceled += _ => moveInput = Vector2.zero;
 
-        Controls.Player.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
+        Controls.Player.Look.performed += ctx =>
+        {
+            if (!inputReady) return;           // ← ignore until ready
+            lookInput = ctx.ReadValue<Vector2>();
+        };
+
         Controls.Player.Look.canceled += _ => lookInput = Vector2.zero;
 
         Controls.Player.Jump.performed += _ => TryJump();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private IEnumerator Start()
+    {
+        yield return null;          // skip one frame so the initial mouse event fires and is swallowed
+        lookInput = Vector2.zero;   // hard reset just in case
+        inputReady = true;
     }
 
     private void OnEnable() => Controls.Enable();
@@ -84,5 +101,13 @@ public class PlayerController : MonoBehaviour
         float pitch = lookInput.y * lookSpeed * Time.deltaTime;
         currentPitch = Mathf.Clamp(currentPitch - pitch, -maxLookAngle, maxLookAngle);
         mainCamera.transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
-    }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            bool isLocked = Cursor.lockState == CursorLockMode.Locked;
+            Cursor.lockState = isLocked ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = isLocked;
+        }
+    
+     }
 }
