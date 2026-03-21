@@ -1,56 +1,65 @@
+using Game.Player;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.UI;
 using UnityEngine;
 
 public class SpikeTrap : Obstacle
 {
-    private Transform spikeBed;
-    private Transform endPoint;
-    private Transform startPoint;
     [SerializeField]
-    private float spikeTime = .5f;
+    private float damageAmount = 10f;
+    [SerializeField]
+    private float damageInterval = 1f;
+    private HashSet<Health> playersInTrap = new HashSet<Health>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spikeBed = transform.GetChild(0);
-        endPoint = transform.GetChild(1);
-        startPoint = transform;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(Activate());
-        }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            StartCoroutine(Deactivate());
-        }
-    }
-
-    IEnumerator Activate() {
-        spikeTime = .5f;
-        while (spikeTime > 0) {
-            spikeBed.position = Vector3.MoveTowards(spikeBed.position, endPoint.position, Time.deltaTime);
-            yield return null;
-
-            spikeTime -= Time.deltaTime;
-        }
         
     }
 
-    IEnumerator Deactivate() 
+    private void OnTriggerEnter(Collider other)
     {
-        spikeTime = .5f;
-        while (spikeTime > 0)
+        //Checks if other collider is player and if it has a Health component, then starts damaging the player at intervals
+        if (other.CompareTag("Player"))
         {
-            spikeBed.position = Vector3.MoveTowards(spikeBed.position, startPoint.position, Time.deltaTime);
-            yield return null;
+           var playerHealth = other.GetComponent<Health>();
 
-            spikeTime -= Time.deltaTime;
+            //Checks if playerhealth is not null and if the hashset doesnt contain the player already
+            if(playerHealth != null && playersInTrap.Add(playerHealth))
+            {
+                StartCoroutine(damagePlayer(playerHealth));
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //Checks if other collider is player and if it has a Health component
+        if (other.CompareTag("Player"))
+        {
+            var playerHealth = other.GetComponent<Health>();
+            playersInTrap.Remove(playerHealth);
+          
+           
+        }
+    }
+
+
+
+    IEnumerator damagePlayer(Health playerHealth) {
+        while (playersInTrap.Contains(playerHealth))
+        {
+            playerHealth.TakeDamage((int)damageAmount);
+            yield return new WaitForSeconds(damageInterval);
         }
     }
 }
+

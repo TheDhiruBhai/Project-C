@@ -26,6 +26,8 @@ public class Grass : Obstacle
     }
 
     void Activate() { 
+
+        //When cards are implemented, this should check if player hits growable reciever while standing on growable sender
         plantBridge.SetActive(true);
     }
 

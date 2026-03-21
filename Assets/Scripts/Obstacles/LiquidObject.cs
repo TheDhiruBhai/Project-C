@@ -7,6 +7,7 @@ public class LiquidObject : Obstacle
     private Transform liquidBlock;
     [SerializeField]
     private bool isSolid = true;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

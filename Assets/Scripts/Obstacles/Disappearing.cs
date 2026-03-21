@@ -34,6 +34,7 @@ public class Disappearing : Obstacle
 
     void Activate() { 
         material.color = startColor;
+        boxCollider.enabled = true;
         StopAllCoroutines();
     }
 

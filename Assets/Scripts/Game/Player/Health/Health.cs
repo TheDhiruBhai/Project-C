@@ -43,5 +43,13 @@ namespace Game.Player
             currentHp = Mathf.Clamp(currentHp - amount, 0, maxHp);
             OnChanged?.Invoke(currentHp, maxHp);
         }
+
+        public int GetMaxHP() { 
+            return MaxHp;
+        }
+
+        public int GetCurrentHP() {
+            return CurrentHp;
+        }   
     }
 }
