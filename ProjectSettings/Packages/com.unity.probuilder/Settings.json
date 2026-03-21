@@ -79,17 +79,17 @@
             {
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "ShapeBuilder.ActiveShapeIndex",
-                "value": "{\"m_Value\":6}"
+                "value": "{\"m_Value\":2}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Cube",
-                "value": "{\"m_Value\":{\"x\":-9.974164962768555,\"y\":4.555868625640869,\"z\":-1.0035066604614258}}"
+                "value": "{\"m_Value\":{\"x\":-0.16871356964111329,\"y\":2.1989216804504396,\"z\":0.24202537536621095}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Door",
-                "value": "{\"m_Value\":{\"x\":1.917630672454834,\"y\":3.912656784057617,\"z\":1.9380416870117188}}"
+                "value": "{\"m_Value\":{\"x\":-3.5344810485839845,\"y\":3.403043508529663,\"z\":1.0874290466308594}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
