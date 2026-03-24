@@ -3,8 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
+<<<<<<< Updated upstream
   tags:
   - Growable
+=======
+  tags: []
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -42,6 +46,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+<<<<<<< Updated upstream
   - name: Cards
     uniqueID: 329374837
     locked: 0
@@ -54,3 +59,7 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
+=======
+  m_RenderingLayers:
+  - Default
+>>>>>>> Stashed changes
