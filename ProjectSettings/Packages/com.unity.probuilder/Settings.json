@@ -77,24 +77,29 @@
                 "value": "{\"m_Value\":false}"
             },
             {
+                "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "editor.extrudeEdgesAsGroup",
+                "value": "{\"m_Value\":true}"
+            },
+            {
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "ShapeBuilder.ActiveShapeIndex",
-                "value": "{\"m_Value\":2}"
+                "value": "{\"m_Value\":6}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Cube",
-                "value": "{\"m_Value\":{\"x\":-0.16871356964111329,\"y\":2.1989216804504396,\"z\":0.24202537536621095}}"
+                "value": "{\"m_Value\":{\"x\":3.4431633949279787,\"y\":5.9030303955078129,\"z\":0.9140634536743164}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Door",
-                "value": "{\"m_Value\":{\"x\":-3.5344810485839845,\"y\":3.403043508529663,\"z\":1.0874290466308594}}"
+                "value": "{\"m_Value\":{\"x\":-2.983104705810547,\"y\":2.9332058429718019,\"z\":-1.92010498046875}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Stairs",
-                "value": "{\"m_Value\":{\"x\":-3.9876551628112795,\"y\":5.844386100769043,\"z\":10.40057373046875}}"
+                "value": "{\"m_Value\":{\"x\":3.0369014739990236,\"y\":3.1623594760894777,\"z\":-4.0431671142578129}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
