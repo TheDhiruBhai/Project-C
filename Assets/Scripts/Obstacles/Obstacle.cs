@@ -1,20 +1,12 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using Game.Cards;
 
 public class Obstacle : MonoBehaviour
 {
     [SerializeField]
-    //Listed as a string for testing purposes, change this later to the actual card class when it is implemented
-    private List<string> cardsToActivate;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Tooltip("Card definitions whose abilities interact with this obstacle.")]
+    private List<CardDefinition> cardsToActivate = new List<CardDefinition>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public IReadOnlyList<CardDefinition> CardsToActivate => cardsToActivate;
 }

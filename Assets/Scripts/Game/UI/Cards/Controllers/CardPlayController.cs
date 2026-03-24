@@ -1,8 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Game.CardsControllers;
 using Game.Player;
 using Game.Net;
 using Game.Abilities;
+using Game.Cards;
 
 namespace Game.CardsControllers
 {
@@ -18,10 +19,12 @@ namespace Game.CardsControllers
         [SerializeField] private bool isStunned = false;
 
         private int _ownerNetId;
+        private PlayerElement _playerElement;
 
         public void Initialize(int ownerNetId)
         {
             _ownerNetId = ownerNetId;
+            _playerElement = GetComponent<PlayerElement>();
         }
 
         public void SetMenuBlocking(bool value) => blockWhileInMenu = value;
@@ -37,6 +40,18 @@ namespace Game.CardsControllers
 
             if (card.IsOnCooldown) return;
 
+            // ── Element restriction check ──────────────────────────────────
+            if (card.definition.elementRestriction != ElementType.Any)
+            {
+                if (_playerElement == null ||
+                    _playerElement.Element != card.definition.elementRestriction)
+                {
+                    Debug.Log($"[CardPlay] Cannot play {card.definition.cardName}: wrong element.");
+                    return;
+                }
+            }
+
+            // ── HP cost pre-check ──────────────────────────────────────────
             int hpCost = card.definition.hpCost;
             if (hpCost > 0 && (health == null || !health.CanSpend(hpCost))) return;
 
@@ -53,7 +68,8 @@ namespace Game.CardsControllers
             targeting.Begin(card.instanceId, _ownerNetId, card.definition.rangeMeters, ability);
         }
 
-        public void ConfirmTargetAndPlay(int cardInstanceId, int casterNetId, int? targetNetId, Vector3 targetPoint)
+        public void ConfirmTargetAndPlay(int cardInstanceId, int casterNetId,
+                                         int? targetNetId, Vector3 targetPoint)
         {
             var req = AbilityRequest.Build(cardInstanceId, casterNetId, targetNetId, targetPoint);
             SendOrExecute(req);

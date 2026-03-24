@@ -11,6 +11,7 @@ namespace Game.Abilities
             if (!ctx.TryGetTarget(out var target) || target == null)
             {
                 reason = "No target";
+                Debug.Log($"FreezeLiquid CanActivate: {reason}");
                 return false;
             }
 
@@ -18,23 +19,36 @@ namespace Game.Abilities
             if (liquid == null)
             {
                 reason = "Not liquid";
+                Debug.Log($"FreezeLiquid CanActivate: {reason}");
                 return false;
             }
             if (liquid.IsFrozen)
             {
                 reason = "Already frozen";
+                Debug.Log($"FreezeLiquid CanActivate: {reason}");
                 return false;
             }
 
             reason = "";
+            Debug.Log("FreezeLiquid CanActivate: SUCCESS");
             return true;
         }
 
         public override void Activate(AbilityContext ctx)
         {
-            if (!ctx.TryGetTarget(out var target) || target == null) return;
+            if (!ctx.TryGetTarget(out var target) || target == null)
+            {
+                Debug.Log("No target");
+                return;
+            }
             var liquid = target.GetComponentInParent<ITransformableLiquid>();
-            if (liquid != null) liquid.Freeze();
+            Debug.Log($"Found Liquid: {liquid}, Type: {liquid?.GetType()}");
+
+            if (liquid != null)
+            {
+                Debug.Log("Calling Freeze()");
+                liquid.Freeze();
+            }
         }
     }
 }

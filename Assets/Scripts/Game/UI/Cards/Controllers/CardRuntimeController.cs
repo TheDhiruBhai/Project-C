@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Cards;
@@ -13,6 +13,7 @@ namespace Game.CardsControllers
         [SerializeField] private int handLimit = 5;
 
         private int _nextInstanceId = 1;
+        private int _ownerNetId;
         private Deck _deck;
         private Hand _hand;
         private DiscardPile _discard;
@@ -24,6 +25,7 @@ namespace Game.CardsControllers
 
         public void Initialize(int ownerPlayerNetId)
         {
+            _ownerNetId = ownerPlayerNetId;
             _deck = new Deck();
             _hand = new Hand(handLimit);
             _discard = new DiscardPile();
@@ -36,7 +38,6 @@ namespace Game.CardsControllers
                 _deck.Add(inst);
             }
             _deck.Shuffle();
-
             DrawUpToLimit();
         }
 
@@ -45,7 +46,6 @@ namespace Game.CardsControllers
             if (_hand == null) return;
 
             bool anyCooldownTicked = false;
-
             for (int i = 0; i < _hand.Cards.Count; i++)
             {
                 var c = _hand.Cards[i];
@@ -57,8 +57,7 @@ namespace Game.CardsControllers
                 }
             }
 
-            if (anyCooldownTicked)
-                OnHandChanged?.Invoke();
+            if (anyCooldownTicked) OnHandChanged?.Invoke();
         }
 
         public CardInstance GetHandCardById(int instanceId) => _hand.GetByInstanceId(instanceId);
@@ -90,6 +89,23 @@ namespace Game.CardsControllers
                 _hand.TryAdd(next);
             }
             OnHandChanged?.Invoke();
+        }
+
+        public void AddCardToCollection(CardDefinition def)
+        {
+            if (def == null) return;
+            var inst = new CardInstance(_nextInstanceId++, _ownerNetId, def);
+
+            if (_hand.Cards.Count < _hand.Limit)
+            {
+                _hand.TryAdd(inst);
+                OnHandChanged?.Invoke();
+            }
+            else
+            {
+                _deck.Add(inst);
+                // No shuffle — newly bought cards enter the bottom of the deck.
+            }
         }
     }
 }

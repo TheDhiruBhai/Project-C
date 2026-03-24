@@ -1,48 +1,25 @@
+﻿using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.WSA;
+using Game.World;
 
-public class Torch : Obstacle
+public class Torch : Obstacle, IFlammable
 {
-    /* Torch
-     * Torches have 2 states, lit and unlit, when activated, they permanently change to lit state, emitting light and allowing players to see in the darkness
-     * 
-     */
-
     private GameObject torchFlame;
 
-
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         torchFlame = transform.GetChild(1).gameObject;
         torchFlame.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Activate();
-        }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            Deactivate();
-        }
+    public void Ignite(float seconds) => Light();
 
-        void Activate()
-        {
-            torchFlame.SetActive(true);
-        }
+    ///Called by gameplay systems or editor tools to light this torch.
+    public void Light() => torchFlame.SetActive(true);
 
-        void Deactivate()
-        {
-            torchFlame.SetActive(false);
-        }
-    }
+    ///Called to extinguish (e.g. water card in future).
+    public void Extinguish() => torchFlame.SetActive(false);
 }

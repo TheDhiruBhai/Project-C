@@ -1,18 +1,35 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
+using Game.World;
 
-public class MovingPlatform : Obstacle
+public class MovingPlatform : Obstacle, IHoldable
 {
-
+    private Transform movingBlock;
     private Transform startPoint;
     private Transform endPoint;
     private bool atStart = true;
-    private Transform movingBlock;
-    [SerializeField]
-    private float speed = 3f;
-    [SerializeField]
-    private bool isPaused = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private bool isPaused = false;
+
+    private float holdRemaining = 0f;
+
+    // ── IHoldable ──────────────────────────────────────────────────────────
+
+    public bool IsHeld => holdRemaining > 0f;
+
+    public void HoldStill(float seconds)
+    {
+        holdRemaining = Mathf.Max(holdRemaining, seconds);
+        isPaused = true;
+    }
+
+    // ── External control (used by Furnace) ─────────────────────────────────
+
+    public void Activate() => isPaused = false;
+    public void Deactivate() => isPaused = true;
+
+    // ── Unity lifecycle ────────────────────────────────────────────────────
+
     void Start()
     {
         movingBlock = transform.GetChild(0);
@@ -21,58 +38,35 @@ public class MovingPlatform : Obstacle
         StartCoroutine(Travel());
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (holdRemaining > 0f)
         {
-            Deactivate();
-        }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            Activate();
+            holdRemaining -= Time.deltaTime;
+            if (holdRemaining <= 0f)
+            {
+                holdRemaining = 0f;
+                isPaused = false;
+            }
         }
     }
 
-    public void Activate() {
-        isPaused = false;
-    }
-
-    public void Deactivate() { 
-        isPaused = true;
-    }
+    // ── Coroutine ──────────────────────────────────────────────────────────
 
     public IEnumerator Travel()
     {
-        if (atStart)
+        Transform target = atStart ? endPoint : startPoint;
+
+        while (Vector3.Distance(movingBlock.position, target.position) >= 0.1f)
         {
-            while (Vector3.Distance(movingBlock.position, endPoint.position) >= .1)
-            {
-                while (isPaused)
-                {
-                    yield return null;
-                }
-                movingBlock.position = Vector3.MoveTowards(movingBlock.position, endPoint.position, speed *Time.deltaTime);
-                yield return null;
-            }
-            atStart = false;
-            yield return new WaitForSeconds(2f);
-            StartCoroutine(Travel());
+            while (isPaused) yield return null;
+            movingBlock.position = Vector3.MoveTowards(
+                movingBlock.position, target.position, speed * Time.deltaTime);
+            yield return null;
         }
-        else
-        {
-            while (Vector3.Distance(movingBlock.position, startPoint.position) >= .1)
-            {
-                while (isPaused)
-                {
-                    yield return null;
-                }
-                movingBlock.position = Vector3.MoveTowards(movingBlock.position, startPoint.position, speed * Time.deltaTime);
-                yield return null;
-            }
-            atStart = true;
-            yield return new WaitForSeconds(2f);
-            StartCoroutine(Travel());
-        }
+
+        atStart = !atStart;
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(Travel());
     }
 }

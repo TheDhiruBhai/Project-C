@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13305197670c2541ade717db17b3969, type: 3}
+  m_Name: Hot Flash
+  m_EditorClassIdentifier: 
+  cardName: Hot Flash
+  icon: {fileID: 0}
+  description: 
+  cardType: 1
+  elementRestriction: 1
+  rangeMeters: 15
+  durationSeconds: 5
+  hpCost: 10
+  cooldownSeconds: 3
+  ability: {fileID: 11400000, guid: 7cd7b382fccdc26478614b1154e12eb3, type: 2}

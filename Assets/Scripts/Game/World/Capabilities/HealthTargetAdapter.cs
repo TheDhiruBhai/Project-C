@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Game.Player;
 
 namespace Game.World
@@ -7,6 +7,13 @@ namespace Game.World
     {
         [SerializeField] private Health health;
 
+        private IDamageImmune _damageImmune;
+
+        private void Awake()
+        {
+            _damageImmune = GetComponentInParent<IDamageImmune>();
+        }
+
         private void Reset()
         {
             if (health == null) health = GetComponentInParent<Health>();
@@ -14,7 +21,10 @@ namespace Game.World
 
         public void TakeDamage(int amount)
         {
-            if (health != null) health.TakeDamage(amount);
+            if (health == null) return;
+            // Invulnerability check — supplied by PlayerInvulnerability component
+            if (_damageImmune != null && _damageImmune.IsInvulnerable) return;
+            health.TakeDamage(amount);
         }
 
         public void Heal(int amount)

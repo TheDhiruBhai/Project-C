@@ -1,51 +1,65 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
+using Game.World;
 
-public class Disappearing : Obstacle
+public class Disappearing : Obstacle, IHoldable
 {
     private Material material;
-    private float fadeDuration = 5f;
     private Color startColor;
     private MeshRenderer meshRenderer;
     private BoxCollider boxCollider;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        material = GetComponent<Renderer>().material;
-        startColor = material.color;
-        meshRenderer = GetComponent<MeshRenderer>();
-        boxCollider = GetComponent<BoxCollider>();
-        StartCoroutine(FadeOut(material, fadeDuration));
-    }
+    [SerializeField] private float fadeDuration = 5f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Activate();
-        }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            Deactivate();
-        }
-    }
+    private float holdRemaining = 0f;
+    private bool isHeld = false;
 
-    void Activate() { 
+    // ── IHoldable ──────────────────────────────────────────────────────────
+
+    public bool IsHeld => holdRemaining > 0f;
+
+    public void HoldStill(float seconds)
+    {
+        holdRemaining = Mathf.Max(holdRemaining, seconds);
+        isHeld = true;
+
+        // Snap to fully visible and re-enable collider while held
+        StopAllCoroutines();
         material.color = startColor;
         boxCollider.enabled = true;
-        StopAllCoroutines();
+        meshRenderer.enabled = true;
     }
 
-    void Deactivate() {
+    // ── Unity lifecycle ────────────────────────────────────────────────────
+
+    void Start()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        boxCollider = GetComponent<BoxCollider>();
+        material = GetComponent<Renderer>().material;
+        startColor = material.color;
         StartCoroutine(FadeOut(material, fadeDuration));
     }
 
+    void Update()
+    {
+        if (holdRemaining > 0f)
+        {
+            holdRemaining -= Time.deltaTime;
+            if (holdRemaining <= 0f)
+            {
+                holdRemaining = 0f;
+                isHeld = false;
+                // Resume the fade cycle
+                StartCoroutine(FadeOut(material, fadeDuration));
+            }
+        }
+    }
+
+    // ── Coroutines ─────────────────────────────────────────────────────────
 
     public IEnumerator FadeOut(Material mat, float duration)
     {
-        //Setting variables for the fade out process
         Color color = startColor;
         float startAlpha = color.a;
         float time = 0f;
@@ -53,6 +67,7 @@ public class Disappearing : Obstacle
 
         while (time < duration)
         {
+            if (isHeld) yield break; // Abort if Stable Ground interrupts
             float t = time / duration;
             color.a = Mathf.Lerp(startAlpha, 0f, t);
             mat.color = color;
@@ -62,29 +77,35 @@ public class Disappearing : Obstacle
 
         color.a = 0f;
         mat.color = color;
+        meshRenderer.enabled = false;
+
         yield return new WaitForSeconds(2f);
         StartCoroutine(FadeIn(mat, fadeDuration));
     }
 
     public IEnumerator FadeIn(Material mat, float duration)
     {
-        //Setting variables for the fade in process
         Color color = startColor;
         float endAlpha = color.a;
         color.a = 0f;
         mat.color = color;
+        meshRenderer.enabled = true;
         float time = 0f;
+
         while (time < duration)
         {
+            if (isHeld) yield break; // Abort if Stable Ground interrupts
             float t = time / duration;
             color.a = Mathf.Lerp(0f, endAlpha, t);
             mat.color = color;
             time += Time.deltaTime;
             yield return null;
         }
+
         color.a = endAlpha;
         mat.color = color;
         boxCollider.enabled = true;
+
         yield return new WaitForSeconds(2f);
         StartCoroutine(FadeOut(mat, fadeDuration));
     }

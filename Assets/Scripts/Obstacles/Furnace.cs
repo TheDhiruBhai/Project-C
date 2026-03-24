@@ -1,53 +1,47 @@
-using Mono.Cecil;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
+using Mono.Cecil;
+using Game.World;
 
-public class Furnace : Obstacle
+public class Furnace : Obstacle, IFlammable
 {
-
     private MovingPlatform movingPlatform;
     private GameObject engine;
     private GameObject pipe;
-    [SerializeField]
-    private Material fire;
-    [SerializeField]
-    private Material startColor;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private Material fireMaterial;
+    [SerializeField] private Material offMaterial;
+    [SerializeField] private float activationDelay = 0.5f;
+
+    // ── Unity lifecycle ────────────────────────────────────────────────────
+
     void Start()
     {
         movingPlatform = transform.GetChild(0).GetComponent<MovingPlatform>();
         engine = transform.GetChild(1).gameObject;
         pipe = transform.GetChild(2).gameObject;
-
     }
 
-    // Update is called once per frame
-    void Update()
+    // ── Public API (called by levers, card abilities, or UnityEvents) ──────
+
+    public void Ignite(float seconds) => TurnOn();
+    public void TurnOn() => StartCoroutine(ActivateCoroutine());
+    public void TurnOff() => StartCoroutine(DeactivateCoroutine());
+
+    // ── Coroutines ─────────────────────────────────────────────────────────
+
+    IEnumerator ActivateCoroutine()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(Activate());
-        }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            StartCoroutine(Deactivate());
-        }
+        yield return new WaitForSeconds(activationDelay);
+        if (movingPlatform != null) movingPlatform.Activate();
+        pipe.GetComponent<MeshRenderer>().material = fireMaterial;
+        engine.GetComponent<MeshRenderer>().material = fireMaterial;
     }
 
-    public IEnumerator Activate()
+    IEnumerator DeactivateCoroutine()
     {
-        yield return new WaitForSeconds(.5f);
-        movingPlatform.Activate();
-        pipe.GetComponent<MeshRenderer>().material = fire;
-        engine.GetComponent<MeshRenderer>().material = fire;    
-    }
-
-    public IEnumerator Deactivate()
-    {
-        yield return new WaitForSeconds(.5f);
-        movingPlatform.Deactivate();
-        pipe.GetComponent<MeshRenderer>().material = startColor;
-        engine.GetComponent<MeshRenderer>().material = startColor;
+        yield return new WaitForSeconds(activationDelay);
+        if (movingPlatform != null) movingPlatform.Deactivate();
+        pipe.GetComponent<MeshRenderer>().material = offMaterial;
+        engine.GetComponent<MeshRenderer>().material = offMaterial;
     }
 }
