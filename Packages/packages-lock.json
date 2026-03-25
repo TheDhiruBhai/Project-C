@@ -58,9 +58,13 @@
     },
     "com.unity.collab-proxy": {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "version": "2.11.3",
 =======
       "version": "2.9.3",
+>>>>>>> Stashed changes
+=======
+      "version": "2.11.4",
 >>>>>>> Stashed changes
       "depth": 0,
       "source": "registry",
@@ -155,6 +159,16 @@
       "url": "https://packages.unity.com"
     },
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+>>>>>>> Stashed changes
     "com.unity.probuilder": {
       "version": "6.0.9",
       "depth": 0,

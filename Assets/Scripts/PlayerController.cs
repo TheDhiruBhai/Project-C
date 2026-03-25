@@ -1,113 +1,88 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
+using Photon.Pun;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPun
 {
     public PlayerControls Controls { get; private set; }
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sprintSpeed = 15f;
     [SerializeField] private float lookSpeed = 15f;
-    [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private float gravity = -9.81f;
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] private float maxLookAngle = 90f;
 
-    private float verticalVelocity;
-    private float currentPitch = 0f;
-    private CharacterController controller;
+    [Header("Components")]
+    public Camera playerCamera; // drag your camera here in inspector
+
     private Vector2 moveInput;
     private Vector2 lookInput;
     private bool sprintHeld;
-    private bool inputReady = false;
-
-    private bool IsGrounded()
-    {
-        return controller.isGrounded;
-    }
-
-    private void TryJump()
-    {
-        if (!IsGrounded()) return;
-
-        verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
-    }
 
     private void Awake()
     {
-        Controls = new PlayerControls();
-        controller = GetComponent<CharacterController>();
+        // Only setup controls if this is OUR player
+        if (!photonView.IsMine) return;
 
-        if (mainCamera == null)
-            mainCamera = Camera.main;
+        Controls = new PlayerControls();
 
         string rebinds = PlayerPrefs.GetString("rebinds", "");
-            if (!string.IsNullOrEmpty(rebinds))
+        if (!string.IsNullOrEmpty(rebinds))
             Controls.LoadBindingOverridesFromJson(rebinds);
 
         Controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         Controls.Player.Move.canceled += _ => moveInput = Vector2.zero;
-
-        Controls.Player.Look.performed += ctx =>
-        {
-            if (!inputReady) return;           // ‚Üê ignore until ready
-            lookInput = ctx.ReadValue<Vector2>();
-        };
-
+        Controls.Player.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
         Controls.Player.Look.canceled += _ => lookInput = Vector2.zero;
-
-        Controls.Player.Jump.performed += _ => TryJump();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return null;          // skip one frame so the initial mouse event fires and is swallowed
-        lookInput = Vector2.zero;   // hard reset just in case
-        inputReady = true;
+        if (photonView.IsMine)
+        {
+            // This is OUR player ó keep camera on
+            if (playerCamera != null)
+            {
+                playerCamera.enabled = true;
+                playerCamera.tag = "MainCamera";
+            }
+
+            Debug.Log("Local player: " + PhotonNetwork.NickName);
+        }
+        else
+        {
+            // This is SOMEONE ELSE ó disable camera
+            if (playerCamera != null)
+                playerCamera.gameObject.SetActive(false);
+
+            Debug.Log("Remote player: " + photonView.Owner.NickName);
+        }
     }
 
-    private void OnEnable() => Controls.Enable();
-    private void OnDisable() => Controls.Disable();
+    private void OnEnable()
+    {
+        if (photonView.IsMine && Controls != null)
+            Controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        if (photonView.IsMine && Controls != null)
+            Controls.Disable();
+    }
 
     private void Update()
     {
+        // Only move if this is OUR player
+        if (!photonView.IsMine) return;
+
         Vector2 m = moveInput;
         if (m.sqrMagnitude > 1f) m = m.normalized;
 
         float currentSpeed = moveInput.y > 0 && sprintHeld ? sprintSpeed : moveSpeed;
 
-        Vector3 horizontal =
-        transform.forward * m.y +
-        transform.right * m.x;
-
-        if (IsGrounded() && verticalVelocity < 0f)
-            verticalVelocity = -2f;
-
-        verticalVelocity += gravity * Time.deltaTime;
-
-        Vector3 velocity =
-            horizontal * currentSpeed +
-            Vector3.up * verticalVelocity;
-
-        controller.Move(velocity * Time.deltaTime);
+        Vector3 direction = transform.forward * m.y + transform.right * m.x;
+        transform.position += direction * currentSpeed * Time.deltaTime;
 
         float yaw = lookInput.x * lookSpeed * Time.deltaTime;
         transform.Rotate(0f, yaw, 0f);
-
-        float pitch = lookInput.y * lookSpeed * Time.deltaTime;
-        currentPitch = Mathf.Clamp(currentPitch - pitch, -maxLookAngle, maxLookAngle);
-        mainCamera.transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            bool isLocked = Cursor.lockState == CursorLockMode.Locked;
-            Cursor.lockState = isLocked ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = isLocked;
-        }
-    
-     }
+    }
 }
