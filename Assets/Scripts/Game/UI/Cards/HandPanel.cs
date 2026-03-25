@@ -7,18 +7,20 @@ namespace Game.UI
 {
     public sealed class HandPanel : MonoBehaviour
     {
-        [SerializeField] private CardRuntimeController runtime;
-        [SerializeField] private CardPlayController playController;
-        [SerializeField] private Transform contentRoot;
-        [SerializeField] private CardView cardPrefab;
+        [SerializeField] private CardRuntimeController    runtime;
+        [SerializeField] private CardPlayController       playController;
+        [SerializeField] private CardSelectionController  selectionController;
+        [SerializeField] private Transform                contentRoot;
+        [SerializeField] private CardView                 cardPrefab;
 
-        private readonly List<CardView> _spawned = new List<CardView>();
+        private readonly List<CardView> spawned = new List<CardView>();
+        private int _selectedIndex = 0;
 
         private void OnEnable()
         {
             if (runtime != null)
             {
-                runtime.OnHandChanged += Rebuild;
+                runtime.OnHandChanged         += Rebuild;
                 runtime.OnCardCooldownChanged += OnCooldownChanged;
             }
             Rebuild();
@@ -28,36 +30,54 @@ namespace Game.UI
         {
             if (runtime != null)
             {
-                runtime.OnHandChanged -= Rebuild;
+                runtime.OnHandChanged         -= Rebuild;
                 runtime.OnCardCooldownChanged -= OnCooldownChanged;
             }
+        }
+
+        ///Called by CardSelectionController when the selection changes.
+        public void SetSelectedIndex(int index)
+        {
+            _selectedIndex = index;
+            RefreshHighlights();
         }
 
         private void Rebuild()
         {
             if (runtime == null || contentRoot == null || cardPrefab == null) return;
 
-            for (int i = 0; i < _spawned.Count; i++)
-                if (_spawned[i] != null) Destroy(_spawned[i].gameObject);
-            _spawned.Clear();
+            for (int i = 0; i < spawned.Count; i++)
+                if (spawned[i] != null) Destroy(spawned[i].gameObject);
+            spawned.Clear();
 
             var hand = runtime.HandCards;
             for (int i = 0; i < hand.Count; i++)
             {
                 CardInstance inst = hand[i];
                 var view = Instantiate(cardPrefab, contentRoot);
-                view.Bind(inst, playController);
-                _spawned.Add(view);
+                // Pass selectionController so clicking a card syncs the index
+                view.Bind(inst, playController, selectionController);
+                spawned.Add(view);
+            }
+
+            RefreshHighlights();
+        }
+
+        private void RefreshHighlights()
+        {
+            for (int i = 0; i < spawned.Count; i++)
+            {
+                if (spawned[i] == null) continue;
+                spawned[i].SetSelected(i == _selectedIndex);
             }
         }
 
         private void OnCooldownChanged(int cardInstanceId, float cooldownRemaining)
         {
-            for (int i = 0; i < _spawned.Count; i++)
+            for (int i = 0; i < spawned.Count; i++)
             {
-                var view = _spawned[i];
+                var view = spawned[i];
                 if (view == null) continue;
-
                 if (view.InstanceId == cardInstanceId)
                 {
                     view.UpdateCooldown(cooldownRemaining);

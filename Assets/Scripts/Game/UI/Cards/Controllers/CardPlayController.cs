@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Game.CardsControllers;
 using Game.Player;
 using Game.Net;
@@ -19,12 +19,12 @@ namespace Game.CardsControllers
         [SerializeField] private bool isStunned = false;
 
         private int _ownerNetId;
-        private PlayerElement _playerElement;
+        private PlayerElement playerElement;
 
         public void Initialize(int ownerNetId)
         {
             _ownerNetId = ownerNetId;
-            _playerElement = GetComponent<PlayerElement>();
+            playerElement = GetComponent<PlayerElement>();
         }
 
         public void SetMenuBlocking(bool value) => blockWhileInMenu = value;
@@ -43,8 +43,8 @@ namespace Game.CardsControllers
             // ── Element restriction check ──────────────────────────────────
             if (card.definition.elementRestriction != ElementType.Any)
             {
-                if (_playerElement == null ||
-                    _playerElement.Element != card.definition.elementRestriction)
+                if (playerElement == null ||
+                    playerElement.Element != card.definition.elementRestriction)
                 {
                     Debug.Log($"[CardPlay] Cannot play {card.definition.cardName}: wrong element.");
                     return;
@@ -55,9 +55,10 @@ namespace Game.CardsControllers
             int hpCost = card.definition.hpCost;
             if (hpCost > 0 && (health == null || !health.CanSpend(hpCost))) return;
 
-            var ability = card.definition.ability;
+            var ability    = card.definition.ability;
             var targetType = ability.TargetType;
 
+            // ── Self / None cards fire immediately on the activation key ───
             if (targetType == TargetType.None || targetType == TargetType.Self)
             {
                 var req = AbilityRequest.Build(card.instanceId, _ownerNetId, null, Vector3.zero);
@@ -65,6 +66,7 @@ namespace Game.CardsControllers
                 return;
             }
 
+            // ── Targeted cards begin the targeting phase ───────────────────
             targeting.Begin(card.instanceId, _ownerNetId, card.definition.rangeMeters, ability);
         }
 

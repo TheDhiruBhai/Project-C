@@ -6,32 +6,60 @@ namespace Game.UI
 {
     public sealed class CardView : MonoBehaviour
     {
-        [SerializeField] private Image icon;
-        [SerializeField] private Text titleText;
-        [SerializeField] private Text descText;
-        [SerializeField] private Text cooldownText;
+        [Header("Display")]
+        [SerializeField] private Image  icon;
+        [SerializeField] private Text   titleText;
+        [SerializeField] private Text   descText;
+        [SerializeField] private Text   cooldownText;
+
+        [Header("Selection")]
+        [SerializeField]
+        [Tooltip("A child GameObject (e.g. a glowing border Image) shown when this card is selected.")]
+        private GameObject selectedHighlight;
+
+        [Header("Interaction")]
         [SerializeField] private Button button;
 
-        private int _instanceId;
-        private CardsControllers.CardPlayController _play;
+        private int instanceId;
+        private CardsControllers.CardPlayController play;
+        private CardsControllers.CardSelectionController selection;
 
-        public int InstanceId => _instanceId;
+        public int InstanceId => instanceId;
 
-        public void Bind(CardInstance instance, CardsControllers.CardPlayController playController)
+        public void Bind(CardInstance instance,
+                         CardsControllers.CardPlayController playController,
+                         CardsControllers.CardSelectionController selectionController = null)
         {
-            _play = playController;
-            _instanceId = instance.instanceId;
+            play      = playController;
+            selection = selectionController;
+            instanceId = instance.instanceId;
 
-            if (icon != null) icon.sprite = instance.definition != null ? instance.definition.icon : null;
-            if (titleText != null) titleText.text = instance.definition != null ? instance.definition.cardName : "Card";
-            if (descText != null) descText.text = instance.definition != null ? instance.definition.description : "";
+            if (icon != null)
+                icon.sprite = instance.definition != null ? instance.definition.icon : null;
+
+            if (titleText != null)
+                titleText.text = instance.definition != null ? instance.definition.cardName : "Card";
+
+            if (descText != null)
+                descText.text = instance.definition != null ? instance.definition.description : "";
+
             UpdateCooldown(instance.cooldownRemaining);
 
+            // Clicking selects the card but does not fire it.
             if (button != null)
             {
                 button.onClick.RemoveAllListeners();
                 button.onClick.AddListener(OnClick);
             }
+
+            SetSelected(false);
+        }
+
+        ///Called by HandPanel to show or hide the selection highlight.
+        public void SetSelected(bool selected)
+        {
+            if (selectedHighlight != null)
+                selectedHighlight.SetActive(selected);
         }
 
         public void UpdateCooldown(float seconds)
@@ -42,8 +70,11 @@ namespace Game.UI
 
         private void OnClick()
         {
-            if (_play == null) return;
-            _play.TryPlay(_instanceId);
+            if (selection != null)
+            {
+                // Find this card's index in the hand and select it by asking the selection controller to match instanceId.
+                selection.SelectByInstanceId(instanceId);
+            }
         }
     }
 }
