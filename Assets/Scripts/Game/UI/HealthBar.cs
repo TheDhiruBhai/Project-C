@@ -13,18 +13,15 @@ public class HealthBar : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerHealth = FindObjectOfType<PlayerController>().GetComponent<Health>();
-        playerMaxHP = playerHealth.GetMaxHP();
-
-
-
+        playerHealth = FindFirstObjectByType<PlayerController>().GetComponent<Health>();
+        playerMaxHP = playerHealth.MaxHp;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Player Current HP: " + playerHealth.GetCurrentHP());
+        Debug.Log("Player Current HP: " + playerHealth.CurrentHp);
 
-        healthBarFill.value = (float) playerHealth.GetCurrentHP()/playerMaxHP;
+        healthBarFill.value = (float) playerHealth.CurrentHp/playerMaxHP;
     }
 }
