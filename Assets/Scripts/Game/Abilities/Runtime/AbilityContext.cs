@@ -10,8 +10,6 @@ namespace Game.Abilities
         public Vector3 targetPoint;
         public double time;
         public IWorldQuery world;
-        public GameObject caster;
-        public GameObject target;
 
         public bool TryGetCaster(out GameObject caster)
         {

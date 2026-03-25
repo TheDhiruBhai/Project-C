@@ -17,7 +17,6 @@ public class PushableObject : Obstacle, IMovable
 
     void Start()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         movingBlock = transform.GetChild(0);
         point1 = transform.GetChild(1);
         point2 = transform.GetChild(2);
