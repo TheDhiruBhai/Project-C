@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stable Ground
   m_EditorClassIdentifier: 
   cardName: Stable Ground
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 2af69e96a280b18458b54db1f33749da, type: 3}
   description: 
   cardType: 1
   elementRestriction: 3

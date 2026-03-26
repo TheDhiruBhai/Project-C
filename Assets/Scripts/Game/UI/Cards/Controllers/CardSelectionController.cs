@@ -41,8 +41,8 @@ namespace Game.CardsControllers
             }
             else
             {
-                // Number keys 1–5
-                for (int i = 0; i < Mathf.Min(handCount, 5); i++)
+                // Number keys 1–7
+                for (int i = 0; i < Mathf.Min(handCount, 7); i++)
                 {
                     if (Input.GetKeyDown(KeyCode.Alpha1 + i))
                     {

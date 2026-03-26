@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pull Lever
   m_EditorClassIdentifier: 
   cardName: Pull Lever
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: a9674b3f5e25dd349bdc13bbc443be69, type: 3}
   description: 
   cardType: 0
   elementRestriction: 0

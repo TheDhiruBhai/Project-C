@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wind Walk
   m_EditorClassIdentifier: 
   cardName: Wind Walk
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 88cca19725116f4479d89d3783b478ad, type: 3}
   description: 
   cardType: 2
   elementRestriction: 4

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13305197670c2541ade717db17b3969, type: 3}
   m_Name: Freeze Liquid
   m_EditorClassIdentifier: 
-  cardName: Freeze Liquid
-  icon: {fileID: 0}
+  cardName: Frozen Breath
+  icon: {fileID: 21300000, guid: 324b88cc88dd4f44ea8ea93be560e8f7, type: 3}
   description: 
   cardType: 1
   elementRestriction: 2

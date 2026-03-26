@@ -8,12 +8,18 @@ namespace Game.UI
 {
     public sealed class GrimoirePanel : MonoBehaviour
     {
+        private const int CardsPerPage = 3;
+
         [Header("Panel Root")]
         [SerializeField] private GameObject grimoireRoot;
 
-        [Header("Content Parents")]
-        [SerializeField] private Transform elementalContent;
-        [SerializeField] private Transform utilityContent;
+        [Header("Elemental Section")]
+        [SerializeField] private Transform elementalCardHolder;
+        // Next/Back buttons for elemental and utility are wired via UIButton
+        // OnClick events in the Inspector — no Button references needed here.
+
+        [Header("Utility Section")]
+        [SerializeField] private Transform utilityCardHolder;
 
         [Header("Prefab")]
         [SerializeField] private GrimoireCardView cardViewPrefab;
@@ -22,25 +28,33 @@ namespace Game.UI
         [SerializeField] private Text playerHpText;
         [SerializeField] private Health health;
 
-        [Header("Buttons")]
-        [SerializeField] private Button closeButton;
+        // Close button is wired via UIButton OnClick in the Inspector.
 
         [Header("Systems")]
         [SerializeField] private CardShopController shopController;
         [SerializeField] private CardsControllers.CardPlayController cardPlayController;
 
-        private readonly List<GrimoireCardView> _spawned = new List<GrimoireCardView>();
         private bool _isOpen = false;
 
-        // ── Unity lifecycle ────────────────────────────────────────────────
+        private List<CardDefinition> _elementalCards = new List<CardDefinition>();
+        private List<CardDefinition> _utilityCards = new List<CardDefinition>();
+
+        private int _elementalPage = 0;
+        private int _utilityPage = 0;
+
+        // Pooled views — one per slot in each holder (CardsPerPage each)
+        private GrimoireCardView[] _elementalViews;
+        private GrimoireCardView[] _utilityViews;
 
         private void Awake()
         {
-            if (closeButton != null)
-                closeButton.onClick.AddListener(Close);
-
             if (grimoireRoot != null)
                 grimoireRoot.SetActive(false);
+
+            // Pre-create pooled views so we just rebind them on each page turn
+            // instead of destroying/instantiating every time.
+            _elementalViews = CreateViewPool(elementalCardHolder);
+            _utilityViews = CreateViewPool(utilityCardHolder);
         }
 
         private void OnEnable()
@@ -57,19 +71,15 @@ namespace Game.UI
 
         private void Update()
         {
-            // Toggle with G key (design doc shows a 'G' book icon in the HUD).
             if (Input.GetKeyDown(KeyCode.G))
             {
                 if (_isOpen) Close();
                 else Open();
             }
 
-            // Also close with Escape.
             if (_isOpen && Input.GetKeyDown(KeyCode.Escape))
                 Close();
         }
-
-        // ── Public API ─────────────────────────────────────────────────────
 
         public void Open()
         {
@@ -79,9 +89,16 @@ namespace Game.UI
             if (grimoireRoot != null) grimoireRoot.SetActive(true);
             if (cardPlayController != null) cardPlayController.SetMenuBlocking(true);
 
-            Rebuild();
-            UpdateHpDisplay(health != null ? health.CurrentHp : 0,
-                            health != null ? health.MaxHp : 0);
+            RefreshCardLists();
+
+            _elementalPage = 0;
+            _utilityPage = 0;
+
+            RenderPage(_elementalViews, _elementalCards, _elementalPage);
+            RenderPage(_utilityViews, _utilityCards, _utilityPage);
+
+            UpdateNavButtons();
+            UpdateHpDisplay();
         }
 
         public void Close()
@@ -93,67 +110,175 @@ namespace Game.UI
             if (cardPlayController != null) cardPlayController.SetMenuBlocking(false);
         }
 
-        // ── Internal ───────────────────────────────────────────────────────
+        // ── Pagination (public so UIButton OnClick events can call them) ───
 
-        private void Rebuild()
+        public void ElementalNext()
         {
-            // Destroy old views
-            foreach (var v in _spawned)
-                if (v != null) Destroy(v.gameObject);
-            _spawned.Clear();
-
-            if (shopController == null || cardViewPrefab == null) return;
-
-            var available = shopController.GetAvailableCards();
-
-            foreach (var def in available)
+            int maxPage = MaxPage(_elementalCards);
+            if (_elementalPage < maxPage)
             {
-                if (def == null) continue;
-
-                // Choose which column this card belongs in
-                Transform parent = def.cardType == CardType.Utility
-                    ? utilityContent
-                    : elementalContent;
-
-                if (parent == null) continue;
-
-                var view = Instantiate(cardViewPrefab, parent);
-                view.Bind(def, OnCardBuyRequested);
-                view.SetAffordable(shopController.CanAfford(def));
-                _spawned.Add(view);
+                _elementalPage++;
+                RenderPage(_elementalViews, _elementalCards, _elementalPage);
+                UpdateNavButtons();
             }
         }
 
-        private void RefreshAffordability()
+        public void ElementalBack()
+        {
+            if (_elementalPage > 0)
+            {
+                _elementalPage--;
+                RenderPage(_elementalViews, _elementalCards, _elementalPage);
+                UpdateNavButtons();
+            }
+        }
+
+        public void UtilityNext()
+        {
+            int maxPage = MaxPage(_utilityCards);
+            if (_utilityPage < maxPage)
+            {
+                _utilityPage++;
+                RenderPage(_utilityViews, _utilityCards, _utilityPage);
+                UpdateNavButtons();
+            }
+        }
+
+        public void UtilityBack()
+        {
+            if (_utilityPage > 0)
+            {
+                _utilityPage--;
+                RenderPage(_utilityViews, _utilityCards, _utilityPage);
+                UpdateNavButtons();
+            }
+        }
+
+        /// Fills the 3 view slots for the given page of the given card list.
+        /// Slots with no card are hidden.
+        private void RenderPage(GrimoireCardView[] views, List<CardDefinition> cards, int page)
+        {
+            int startIndex = page * CardsPerPage;
+
+            for (int slot = 0; slot < CardsPerPage; slot++)
+            {
+                int cardIndex = startIndex + slot;
+                bool hasCard = cardIndex < cards.Count;
+
+                var view = views[slot];
+                if (view == null) continue;
+
+                view.gameObject.SetActive(hasCard);
+
+                if (hasCard)
+                {
+                    var def = cards[cardIndex];
+                    view.Bind(def, OnCardBuyRequested);
+                    view.SetAffordable(shopController != null && shopController.CanAfford(def));
+                }
+            }
+        }
+
+        private void UpdateNavButtons()
+        {
+            // Nav button greying is handled here if you later add Button references.
+            // For now, Next/Back are always interactable — pages that don't exist
+            // simply do nothing when called (guards are inside each method above).
+        }
+
+        private void RefreshAffordability(GrimoireCardView[] views, List<CardDefinition> cards, int page)
         {
             if (shopController == null) return;
-            foreach (var view in _spawned)
+
+            int startIndex = page * CardsPerPage;
+            for (int slot = 0; slot < CardsPerPage; slot++)
             {
-                if (view == null) continue;
-                // Re-check affordability after every HP change
-                // GrimoireCardView.Bind stores the definition; we need to reach it.
-                // We store a local mapping by keeping a parallel list for simplicity.
+                int cardIndex = startIndex + slot;
+                if (cardIndex >= cards.Count) break;
+                views[slot]?.SetAffordable(shopController.CanAfford(cards[cardIndex]));
             }
-            // Simplest safe approach: full rebuild when HP changes while panel is open.
-            if (_isOpen) Rebuild();
         }
 
         private void OnCardBuyRequested(CardDefinition def)
         {
-            if (shopController != null)
-                shopController.RequestPurchase(def);
+            if (shopController == null || !shopController.CanAfford(def)) return;
+
+            shopController.RequestPurchase(def);
+
+            // Refresh affordability on both visible pages after the purchase
+            RefreshAffordability(_elementalViews, _elementalCards, _elementalPage);
+            RefreshAffordability(_utilityViews, _utilityCards, _utilityPage);
+
+            UpdateHpDisplay();
+        }
+
+        private void RefreshCardLists()
+        {
+            _elementalCards.Clear();
+            _utilityCards.Clear();
+
+            if (shopController == null) return;
+
+            var all = shopController.GetAvailableCards();
+            foreach (var def in all)
+            {
+                if (def == null) continue;
+                if (def.cardType == CardType.Utility)
+                    _utilityCards.Add(def);
+                else
+                    _elementalCards.Add(def);
+            }
+        }
+
+        ///Returns the index of the last valid page (0-based).
+        private static int MaxPage(List<CardDefinition> cards)
+        {
+            if (cards.Count == 0) return 0;
+            return (cards.Count - 1) / CardsPerPage;
+        }
+
+        /// Creates CardsPerPage GrimoireCardView instances as children of the
+        /// given holder. Existing children are reused if they already have the
+        /// component; new ones are instantiated from the prefab for any missing slots.
+        private GrimoireCardView[] CreateViewPool(Transform holder)
+        {
+            var pool = new GrimoireCardView[CardsPerPage];
+            if (holder == null || cardViewPrefab == null) return pool;
+
+            for (int i = 0; i < CardsPerPage; i++)
+            {
+                // Reuse existing child if present
+                if (i < holder.childCount)
+                {
+                    var existing = holder.GetChild(i).GetComponent<GrimoireCardView>();
+                    if (existing != null)
+                    {
+                        pool[i] = existing;
+                        continue;
+                    }
+                }
+                // Otherwise instantiate from prefab
+                pool[i] = Instantiate(cardViewPrefab, holder);
+            }
+
+            return pool;
         }
 
         private void OnHealthChanged(int current, int max)
         {
-            UpdateHpDisplay(current, max);
-            RefreshAffordability();
+            UpdateHpDisplay();
+
+            if (!_isOpen) return;
+
+            // Refresh affordability on current visible pages
+            RefreshAffordability(_elementalViews, _elementalCards, _elementalPage);
+            RefreshAffordability(_utilityViews, _utilityCards, _utilityPage);
         }
 
-        private void UpdateHpDisplay(int current, int max)
+        private void UpdateHpDisplay()
         {
-            if (playerHpText != null)
-                playerHpText.text = $"♥ {current}";
+            if (playerHpText != null && health != null)
+                playerHpText.text = $"♥ {health.CurrentHp}";
         }
     }
 }

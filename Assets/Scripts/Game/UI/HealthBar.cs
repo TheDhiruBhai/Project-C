@@ -20,7 +20,7 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Player Current HP: " + playerHealth.CurrentHp);
+        //Debug.Log("Player Current HP: " + playerHealth.CurrentHp);
 
         healthBarFill.value = (float) playerHealth.CurrentHp/playerMaxHP;
     }

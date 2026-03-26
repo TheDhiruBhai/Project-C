@@ -16,8 +16,6 @@ public class CrushingTrap : Obstacle, IHoldable
     private bool isPaused = false;
     private float holdRemaining = 0f;
 
-    // ── IHoldable ──────────────────────────────────────────────────────────
-
     public bool IsHeld => holdRemaining > 0f;
 
     public void HoldStill(float seconds)
@@ -25,8 +23,6 @@ public class CrushingTrap : Obstacle, IHoldable
         holdRemaining = Mathf.Max(holdRemaining, seconds);
         isPaused = true;
     }
-
-    // ── Unity lifecycle ────────────────────────────────────────────────────
 
     void Start()
     {
@@ -51,8 +47,6 @@ public class CrushingTrap : Obstacle, IHoldable
             }
         }
     }
-
-    // ── Coroutines ─────────────────────────────────────────────────────────
 
     IEnumerator Crush()
     {

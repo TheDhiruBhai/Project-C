@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Plant Growth
   m_EditorClassIdentifier: 
   cardName: Plant Growth
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 8cd25ecb2c569b644bb95ef44c872d1f, type: 3}
   description: 
   cardType: 1
   elementRestriction: 3

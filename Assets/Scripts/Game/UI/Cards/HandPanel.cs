@@ -21,7 +21,6 @@ namespace Game.UI
             if (runtime != null)
             {
                 runtime.OnHandChanged         += Rebuild;
-                runtime.OnCardCooldownChanged += OnCooldownChanged;
             }
             Rebuild();
         }
@@ -31,7 +30,6 @@ namespace Game.UI
             if (runtime != null)
             {
                 runtime.OnHandChanged         -= Rebuild;
-                runtime.OnCardCooldownChanged -= OnCooldownChanged;
             }
         }
 
@@ -69,20 +67,6 @@ namespace Game.UI
             {
                 if (spawned[i] == null) continue;
                 spawned[i].SetSelected(i == _selectedIndex);
-            }
-        }
-
-        private void OnCooldownChanged(int cardInstanceId, float cooldownRemaining)
-        {
-            for (int i = 0; i < spawned.Count; i++)
-            {
-                var view = spawned[i];
-                if (view == null) continue;
-                if (view.InstanceId == cardInstanceId)
-                {
-                    view.UpdateCooldown(cooldownRemaining);
-                    return;
-                }
             }
         }
     }

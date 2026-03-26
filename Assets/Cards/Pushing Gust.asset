@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pushing Gust
   m_EditorClassIdentifier: 
   cardName: Pushing Gust
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: b12c0dc1a2f0dd745b968601a023fb98, type: 3}
   description: 
   cardType: 1
   elementRestriction: 4

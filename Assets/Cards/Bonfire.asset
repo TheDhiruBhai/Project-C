@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bonfire
   m_EditorClassIdentifier: 
   cardName: Bonfire
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 088b7719de308294b9a16a1d6024d50d, type: 3}
   description: 
   cardType: 2
   elementRestriction: 1

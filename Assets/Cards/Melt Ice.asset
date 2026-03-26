@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13305197670c2541ade717db17b3969, type: 3}
   m_Name: Melt Ice
   m_EditorClassIdentifier: 
-  cardName: Melt Ice
-  icon: {fileID: 0}
+  cardName: Flow Breath
+  icon: {fileID: 21300000, guid: 774c537803966374db602996f06001dd, type: 3}
   description: 
   cardType: 1
   elementRestriction: 2

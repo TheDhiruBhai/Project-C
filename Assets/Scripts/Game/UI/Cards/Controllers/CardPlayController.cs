@@ -51,10 +51,6 @@ namespace Game.CardsControllers
                 }
             }
 
-            // ── HP cost pre-check ──────────────────────────────────────────
-            int hpCost = card.definition.hpCost;
-            if (hpCost > 0 && (health == null || !health.CanSpend(hpCost))) return;
-
             var ability    = card.definition.ability;
             var targetType = ability.TargetType;
 
@@ -95,9 +91,6 @@ namespace Game.CardsControllers
 
             var card = cardRuntime.GetHandCardById(result.cardInstanceId);
             if (card == null) return;
-
-            int hpCost = card.definition != null ? card.definition.hpCost : 0;
-            if (hpCost > 0 && health != null) health.TrySpend(hpCost);
 
             cardRuntime.StartCooldown(card);
             cardRuntime.DiscardFromHand(card);
