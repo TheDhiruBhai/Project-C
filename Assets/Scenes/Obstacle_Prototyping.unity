@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1582950373}
     m_Modifications:
+    - target: {fileID: -4900287385880585847, guid: 7729ae1cf8369de41bf0f0c31f7a9548, type: 3}
+      propertyPath: sceneViewId
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1777471059594948008, guid: 7729ae1cf8369de41bf0f0c31f7a9548, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.94918466
@@ -199,6 +203,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1582950373}
     m_Modifications:
+    - target: {fileID: -8283643553701603597, guid: 6d4d2a9b95d8204409cc5fc37035b76f, type: 3}
+      propertyPath: sceneViewId
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1777471059594948008, guid: 6d4d2a9b95d8204409cc5fc37035b76f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.400566
@@ -424,6 +432,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5570919126497825786, guid: 3ff8f507f15d2fe4287d627da210ddff, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 285825589584840503, guid: 3ff8f507f15d2fe4287d627da210ddff, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -530,6 +542,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -971372324008501134, guid: 724a737c52a7e17459a30f05fd89a373, type: 3}
+      propertyPath: sceneViewId
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 285825589584840503, guid: 724a737c52a7e17459a30f05fd89a373, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -644,6 +660,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1582950373}
     m_Modifications:
+    - target: {fileID: -7831326160931858765, guid: 2b9346a9c72470941b5fc49a6c356ad9, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -3420853303209873200, guid: 2b9346a9c72470941b5fc49a6c356ad9, type: 3}
       propertyPath: 'cardsToActivate.Array.data[0]'
       value: 
@@ -768,6 +788,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4479738479315300498, guid: 8fa3624bf232af54b9f5058dfb4372c6, type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6590269324189820556, guid: 8fa3624bf232af54b9f5058dfb4372c6, type: 3}
       propertyPath: 'cardsToActivate.Array.data[0]'
       value: 
@@ -855,6 +879,10 @@ PrefabInstance:
     - target: {fileID: 1777471059594948008, guid: f6206fd94b9e75546a041581a534c9a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674787674210328254, guid: f6206fd94b9e75546a041581a534c9a4, type: 3}
+      propertyPath: sceneViewId
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4882155800556685710, guid: f6206fd94b9e75546a041581a534c9a4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1553,6 +1581,10 @@ PrefabInstance:
       propertyPath: 'cardsToActivate.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 7747dbecc3a310442b24be8086aa3fe6, type: 2}
+    - target: {fileID: -1484911793416623236, guid: 881d2d20ac83a8a4cb76d5d1f607aca5, type: 3}
+      propertyPath: sceneViewId
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6241154588696657386, guid: 881d2d20ac83a8a4cb76d5d1f607aca5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.632
@@ -2023,38 +2055,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
-  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
-  m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
 --- !u!143 &864910042
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2711,6 +2711,10 @@ PrefabInstance:
       propertyPath: 'cardsToActivate.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: e6755b2c4a2ea1242aadf437c31ed9fe, type: 2}
+    - target: {fileID: 5356516666735800965, guid: acb936ee19221f14fbe45fbbaedda97a, type: 3}
+      propertyPath: sceneViewId
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5663224763908777037, guid: acb936ee19221f14fbe45fbbaedda97a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.547592
@@ -2840,6 +2844,10 @@ PrefabInstance:
     - target: {fileID: 1777471059594948008, guid: 8fa3624bf232af54b9f5058dfb4372c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479738479315300498, guid: 8fa3624bf232af54b9f5058dfb4372c6, type: 3}
+      propertyPath: sceneViewId
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6744607554823177573, guid: 8fa3624bf232af54b9f5058dfb4372c6, type: 3}
       propertyPath: m_Name
@@ -3191,6 +3199,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6401146478106772994, guid: 0a564734629fe2b42993e3f375c469c9, type: 3}
+      propertyPath: sceneViewId
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 6773507496713030891, guid: 0a564734629fe2b42993e3f375c469c9, type: 3}
       propertyPath: fireMaterial
       value: 
@@ -3199,6 +3211,10 @@ PrefabInstance:
       propertyPath: 'cardsToActivate.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: cec7380b9829c5942a319aa22ce9dd30, type: 2}
+    - target: {fileID: 8748624271649608551, guid: 0a564734629fe2b42993e3f375c469c9, type: 3}
+      propertyPath: sceneViewId
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3353,6 +3369,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 6414949443218345345, guid: b91fbb3b928c24744a855aeaa0ef62a4, type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6420530187515323568, guid: b91fbb3b928c24744a855aeaa0ef62a4, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3407,6 +3427,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1582950373}
     m_Modifications:
+    - target: {fileID: -3209060610887666307, guid: ae7bea86b041f0243913377f498057e4, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1130035761051243208, guid: ae7bea86b041f0243913377f498057e4, type: 3}
       propertyPath: m_Name
       value: DisappearingObject
