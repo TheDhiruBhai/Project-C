@@ -5,11 +5,13 @@ namespace Game.World
     public sealed class LightReceiver : MonoBehaviour, ILightReceiver
     {
         private float _litRemaining;
+        [SerializeField] private Light bonfireLight;
 
         public void Illuminate(float seconds)
         {
             _litRemaining = Mathf.Max(_litRemaining, seconds);
-            // Disable darkness volume or increase local light here.
+            if (bonfireLight) bonfireLight.gameObject.SetActive(true);
+            Debug.Log($"[LightReceiver] Light enabled for {seconds}s");
         }
 
         private void Update()
@@ -18,7 +20,7 @@ namespace Game.World
             _litRemaining -= Time.deltaTime;
             if (_litRemaining <= 0f)
             {
-                // Re enable darkness effect here.
+                if (bonfireLight) bonfireLight.gameObject.SetActive(false);
             }
         }
     }

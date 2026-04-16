@@ -1,20 +1,21 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Game.World;
 using System.Runtime.CompilerServices;
 using UnityEngine.UIElements;
+using Game.Player;
 
 
 public class CrushingTrap : Obstacle, IHoldable
 {
-    private Transform rightBlock;
-    private Transform leftBlock;
-    private Vector3 rightBlockStartPos;
-    private Vector3 leftBlockStartPos;
     private Animator anim;
-    [SerializeField] private float crushTime = 1.5f;
+    [SerializeField] private float crushTime = 3f;
     private bool isPaused = false;
     private float holdRemaining = 0f;
+    [SerializeField] private int damageAmount = 10;
+    [SerializeField] private float damageInterval = 1f;
+    private HashSet<Health> playersCrushed = new HashSet<Health>();
 
     public bool IsHeld => holdRemaining > 0f;
 
@@ -22,21 +23,18 @@ public class CrushingTrap : Obstacle, IHoldable
     {
         holdRemaining = Mathf.Max(holdRemaining, seconds);
         isPaused = true;
+        anim.speed = 0f;
     }
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        rightBlock = transform.GetChild(0);
-        leftBlock = transform.GetChild(1);
-        rightBlockStartPos = rightBlock.localPosition;
-        leftBlockStartPos = leftBlock.localPosition;
-        StartCoroutine(Crush());
+        anim.SetBool("isCrushing", true);
+        StartCoroutine(CycleTrap());
     }
 
     void Update()
     {
-        // Tick down the hold timer set by Stable Ground card
         if (holdRemaining > 0f)
         {
             holdRemaining -= Time.deltaTime;
@@ -44,47 +42,45 @@ public class CrushingTrap : Obstacle, IHoldable
             {
                 holdRemaining = 0f;
                 isPaused = false;
+                anim.speed = 1f;
             }
         }
     }
 
-    IEnumerator Crush()
+    IEnumerator CycleTrap()
     {
-        float timer = crushTime;
-        while (timer > 0f)
+        while (true)
         {
-            while (isPaused) yield return null;
+            // Crushing phase
+            anim.SetBool("isCrushing", true);
+            float timer = crushTime;
+            while (timer > 0f)
+            {
+                if (!isPaused) timer -= Time.deltaTime;
+                yield return null;
+            }
 
-            rightBlock.localPosition = Vector3.MoveTowards(
-                rightBlock.localPosition, Vector3.zero, Time.deltaTime);
-            leftBlock.localPosition = Vector3.MoveTowards(
-                leftBlock.localPosition, Vector3.zero, Time.deltaTime);
+            yield return new WaitForSeconds(2f);
 
-            timer -= Time.deltaTime;
-            yield return null;
+            // Opening phase
+            anim.SetBool("isCrushing", false);
+            timer = crushTime;
+            while (timer > 0f)
+            {
+                if (!isPaused) timer -= Time.deltaTime;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(2f);
         }
-
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(Open());
     }
 
-    IEnumerator Open()
+    IEnumerator DamagePlayer(Health playerHealth)
     {
-        float timer = crushTime;
-        while (timer > 0f)
+        while (playersCrushed.Contains(playerHealth))
         {
-            while (isPaused) yield return null;
-
-            rightBlock.localPosition = Vector3.MoveTowards(
-                rightBlock.localPosition, rightBlockStartPos, Time.deltaTime);
-            leftBlock.localPosition = Vector3.MoveTowards(
-                leftBlock.localPosition, leftBlockStartPos, Time.deltaTime);
-
-            timer -= Time.deltaTime;
-            yield return null;
+            playerHealth.TakeDamage(damageAmount);
+            yield return new WaitForSeconds(damageInterval);
         }
-
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(Crush());
     }
 }

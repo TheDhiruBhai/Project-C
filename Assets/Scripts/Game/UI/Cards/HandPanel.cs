@@ -9,16 +9,16 @@ namespace Game.UI
 {
     public sealed class HandPanel : MonoBehaviour
     {
-        [SerializeField] private CardRuntimeController    runtime;
-        [SerializeField] private CardPlayController       playController;
-        [SerializeField] private CardSelectionController  selectionController;
-        [SerializeField] private Transform                contentRoot;
-        [SerializeField] private CardView                 cardPrefab;
+        [SerializeField] private CardRuntimeController runtime;
+        [SerializeField] private CardPlayController playController;
+        [SerializeField] private CardSelectionController selectionController;
+        [SerializeField] private Transform contentRoot;
+        [SerializeField] private CardView cardPrefab;
 
         private readonly List<CardView> spawned = new List<CardView>();
         private int _selectedIndex = 0;
 
-       private void Awake()
+        private void Awake()
         {
             if (runtime == null || playController == null || selectionController == null)
                 StartCoroutine(FindAndAssignFromLocalPlayer());
@@ -47,7 +47,7 @@ namespace Game.UI
         {
             if (runtime != null)
             {
-                runtime.OnHandChanged         += Rebuild;
+                runtime.OnHandChanged += Rebuild;
             }
             Rebuild();
         }
@@ -56,7 +56,7 @@ namespace Game.UI
         {
             if (runtime != null)
             {
-                runtime.OnHandChanged         -= Rebuild;
+                runtime.OnHandChanged -= Rebuild;
             }
         }
 

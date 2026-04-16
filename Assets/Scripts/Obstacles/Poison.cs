@@ -11,7 +11,7 @@ using Photon.Pun;
 // SETUP: Add a PhotonView component to this GameObject in the Inspector.
 public class Poison : MonoBehaviourPun
 {
-    [SerializeField] private int damageAmount = 5;
+    [SerializeField] private int damageAmount = 10;
     [SerializeField] private float damageInterval = 1f;
     private HashSet<Health> playersInPoison = new HashSet<Health>();
 
@@ -23,8 +23,8 @@ public class Poison : MonoBehaviourPun
         if (!other.CompareTag("Player")) return;
 
         // PHOTON: Skip any player that doesn't belong to this client
-        var pv = other.GetComponent<PhotonView>();
-        if (pv == null || !pv.IsMine) return;
+        //var pv = other.GetComponent<PhotonView>();
+        //if (pv == null || !pv.IsMine) return;
 
         var playerHealth = other.GetComponent<Health>();
         if (playerHealth != null && playersInPoison.Add(playerHealth))
@@ -35,8 +35,8 @@ public class Poison : MonoBehaviourPun
     {
         if (!other.CompareTag("Player")) return;
 
-        var pv = other.GetComponent<PhotonView>();
-        if (pv == null || !pv.IsMine) return;
+        //var pv = other.GetComponent<PhotonView>();
+        //if (pv == null || !pv.IsMine) return;
 
         var playerHealth = other.GetComponent<Health>();
         playersInPoison.Remove(playerHealth);

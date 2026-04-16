@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Bonfire Ability SO
   m_EditorClassIdentifier: 
   targetType: 1
-  lightSeconds: 10
+  lightSeconds: 30

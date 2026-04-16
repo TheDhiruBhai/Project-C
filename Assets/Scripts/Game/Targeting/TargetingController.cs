@@ -97,6 +97,13 @@ namespace Game.CardsControllers
 
         private void ValidateCurrent()
         {
+            // Self / None cards need no world target — always valid so any click fires them
+            if (_ability.TargetType == TargetType.None || _ability.TargetType == TargetType.Self)
+            {
+                _isValid = true;
+                return;
+            }
+
             var ctx = new Abilities.AbilityContext
             {
                 casterNetId = _casterNetId,
