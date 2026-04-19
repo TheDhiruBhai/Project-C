@@ -114,6 +114,8 @@ public class PlayerController : MonoBehaviourPun
             bool isLocked = Cursor.lockState == CursorLockMode.Locked;
             Cursor.lockState = isLocked ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = isLocked;
+
+            //On pressing escape, each player should be able to access the pause menu child of their HUD, allowing them to exit to the main menu or quit the game.
         }
     
      }

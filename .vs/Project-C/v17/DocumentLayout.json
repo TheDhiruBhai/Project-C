@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|c:\\users\\calli\\onedrive\\desktop\\game dev stuff\\project-c\\assets\\normalgon\\shared assets\\shaders\\uv2colormapper.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\normalgon\\shared assets\\shaders\\uv2colormapper.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|c:\\users\\calli\\onedrive\\desktop\\game dev stuff\\project-c\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|c:\\users\\calli\\onedrive\\desktop\\game dev stuff\\project-c\\assets\\scripts\\input\\playercontrols_inputactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\input\\playercontrols_inputactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\assets\\scripts\\game\\ui\\uibutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\ui\\uibutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\assets\\scripts\\obstacles\\crushingtrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,19 +31,44 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UV2ColorMapper.shader",
-              "DocumentMoniker": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Normalgon\\Shared Assets\\Shaders\\UV2ColorMapper.shader",
-              "RelativeDocumentMoniker": "Assets\\Normalgon\\Shared Assets\\Shaders\\UV2ColorMapper.shader",
-              "ToolTip": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Normalgon\\Shared Assets\\Shaders\\UV2ColorMapper.shader",
-              "RelativeToolTip": "Assets\\Normalgon\\Shared Assets\\Shaders\\UV2ColorMapper.shader",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAjwHAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2026-04-14T18:28:04.426Z",
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
+              "ToolTip": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAAwHoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T18:41:54.29Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "PlayerControls_InputActions.cs",
+              "DocumentMoniker": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\Input\\PlayerControls_InputActions.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Input\\PlayerControls_InputActions.cs",
+              "ToolTip": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\Input\\PlayerControls_InputActions.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Input\\PlayerControls_InputActions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T18:33:13.826Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UIButton.cs",
+              "DocumentMoniker": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\Game\\UI\\UIButton.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\UI\\UIButton.cs",
+              "ToolTip": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\Game\\UI\\UIButton.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\UI\\UIButton.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T13:51:57.264Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "CrushingTrap.cs",
               "DocumentMoniker": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\Obstacles\\CrushingTrap.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Obstacles\\CrushingTrap.cs",

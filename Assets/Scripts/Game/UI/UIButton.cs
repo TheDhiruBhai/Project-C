@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIButton : MonoBehaviour
 {
@@ -23,4 +24,14 @@ public class UIButton : MonoBehaviour
         UIobject.SetActive(false);
 
     }
+
+    public void changeScene(string sceneName) { 
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void QuitGame() { 
+        Application.Quit();
+    }
+
+
 }
