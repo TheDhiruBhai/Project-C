@@ -46,6 +46,9 @@ namespace Game.UI
         private GrimoireCardView[] _elementalViews;
         private GrimoireCardView[] _utilityViews;
 
+        [SerializeField]
+        private bool isOpen = false;
+
         private void Awake()
         {
             if (grimoireRoot != null)
@@ -99,6 +102,7 @@ namespace Game.UI
 
             UpdateNavButtons();
             UpdateHpDisplay();
+            isOpen = true;
         }
 
         public void Close()
@@ -108,6 +112,7 @@ namespace Game.UI
 
             if (grimoireRoot != null) grimoireRoot.SetActive(false);
             if (cardPlayController != null) cardPlayController.SetMenuBlocking(false);
+            isOpen = false;
         }
 
         // ── Pagination (public so UIButton OnClick events can call them) ───

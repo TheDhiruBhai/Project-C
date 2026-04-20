@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviourPun
     private Vector2 lookInput;
     private bool sprintHeld;
     private bool inputReady = false;
+    private bool canLook = true;
 
     private bool IsGrounded()
     {
@@ -102,12 +103,16 @@ public class PlayerController : MonoBehaviourPun
 
         controller.Move(velocity * Time.deltaTime);
 
-        float yaw = lookInput.x * lookSpeed * Time.deltaTime;
-        transform.Rotate(0f, yaw, 0f);
+        
 
-        float pitch = lookInput.y * lookSpeed * Time.deltaTime;
-        currentPitch = Mathf.Clamp(currentPitch - pitch, -maxLookAngle, maxLookAngle);
-        mainCamera.transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
+        if (canLook)
+        {
+            float yaw = lookInput.x * lookSpeed * Time.deltaTime;
+            transform.Rotate(0f, yaw, 0f);
+            float pitch = lookInput.y * lookSpeed * Time.deltaTime;
+            currentPitch = Mathf.Clamp(currentPitch - pitch, -maxLookAngle, maxLookAngle);
+            mainCamera.transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -119,4 +124,12 @@ public class PlayerController : MonoBehaviourPun
         }
     
      }
+
+    public void PauseLook() { 
+        canLook = false;
+    }
+
+    public void UnPauseLoo() { 
+        canLook = true;
+    }
 }

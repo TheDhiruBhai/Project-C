@@ -4238,6 +4238,7 @@ MonoBehaviour:
   health: {fileID: 0}
   shopController: {fileID: 3175447581068687141}
   cardPlayController: {fileID: 7645816451732553823}
+  isOpen: 0
 --- !u!114 &4379764769335150009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4290,6 +4291,7 @@ MonoBehaviour:
   health: {fileID: 1683952864560332959}
   shopController: {fileID: 4379764769335150009}
   cardPlayController: {fileID: 7645816451732553823}
+  isOpen: 0
 --- !u!114 &9089353398931414898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4342,6 +4344,7 @@ MonoBehaviour:
   health: {fileID: 1683952864560332959}
   shopController: {fileID: 9089353398931414898}
   cardPlayController: {fileID: 7645816451732553823}
+  isOpen: 0
 --- !u!1 &8759892417033009373
 GameObject:
   m_ObjectHideFlags: 0

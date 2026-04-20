@@ -1965,6 +1965,7 @@ MonoBehaviour:
   health: {fileID: 0}
   shopController: {fileID: 3542469690602945381}
   cardPlayController: {fileID: 0}
+  isOpen: 0
 --- !u!114 &7173353074156549784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2017,6 +2018,7 @@ MonoBehaviour:
   health: {fileID: 0}
   shopController: {fileID: 7173353074156549784}
   cardPlayController: {fileID: 0}
+  isOpen: 0
 --- !u!1 &3990174393453234651
 GameObject:
   m_ObjectHideFlags: 0
