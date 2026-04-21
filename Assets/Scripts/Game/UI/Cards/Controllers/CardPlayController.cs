@@ -40,7 +40,6 @@ namespace Game.CardsControllers
 
             if (card.IsOnCooldown) return;
 
-            // ── Element restriction check ──────────────────────────────────
             if (card.definition.elementRestriction != ElementType.Any)
             {
                 if (playerElement == null ||
@@ -51,18 +50,13 @@ namespace Game.CardsControllers
                 }
             }
 
-            var ability    = card.definition.ability;
+            int hpCost = card.definition.hpCost;
+            if (hpCost > 0 && (health == null || !health.CanSpend(hpCost))) return;
+
+            var ability = card.definition.ability;
             var targetType = ability.TargetType;
 
-            // ── Self / None cards fire immediately on the activation key ───
-            if (targetType == TargetType.None || targetType == TargetType.Self)
-            {
-                var req = AbilityRequest.Build(card.instanceId, _ownerNetId, null, Vector3.zero);
-                SendOrExecute(req);
-                return;
-            }
-
-            // ── Targeted cards begin the targeting phase ───────────────────
+            // ── All cards begin the targeting phase; Self/None confirm on any click ──
             targeting.Begin(card.instanceId, _ownerNetId, card.definition.rangeMeters, ability);
         }
 
@@ -91,6 +85,9 @@ namespace Game.CardsControllers
 
             var card = cardRuntime.GetHandCardById(result.cardInstanceId);
             if (card == null) return;
+
+            int hpCost = card.definition != null ? card.definition.hpCost : 0;
+            if (hpCost > 0 && health != null) health.TrySpend(hpCost);
 
             cardRuntime.StartCooldown(card);
             cardRuntime.DiscardFromHand(card);

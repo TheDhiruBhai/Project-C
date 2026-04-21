@@ -7,13 +7,12 @@ namespace Game.CardsControllers
     {
         [Header("References")]
         [SerializeField] private CardRuntimeController cardRuntime;
-        [SerializeField] private CardPlayController    cardPlay;
-        [SerializeField] private Game.UI.HandPanel     handPanel;
+        [SerializeField] private CardPlayController cardPlay;
+        [SerializeField] private TargetingController targeting;
+        [SerializeField] private Game.UI.HandPanel handPanel;
 
         [Header("Input")]
-        [SerializeField] private KeyCode cycleLeftKey  = KeyCode.Q;
-        [SerializeField] private KeyCode cycleRightKey = KeyCode.E;
-        [SerializeField] private KeyCode activateKey   = KeyCode.F;
+        [SerializeField] private float scrollThreshold = 0.01f;
 
         private int selectedIndex = 0;
 
@@ -26,15 +25,16 @@ namespace Game.CardsControllers
             int handCount = cardRuntime.HandCards.Count;
             if (handCount == 0) return;
 
-            //Selection input
             bool selectionChanged = false;
 
-            if (Input.GetKeyDown(cycleLeftKey))
+            // Scroll wheel cycling
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            if (scroll > scrollThreshold)
             {
                 selectedIndex = (selectedIndex - 1 + handCount) % handCount;
                 selectionChanged = true;
             }
-            else if (Input.GetKeyDown(cycleRightKey))
+            else if (scroll < -scrollThreshold)
             {
                 selectedIndex = (selectedIndex + 1) % handCount;
                 selectionChanged = true;
@@ -46,7 +46,7 @@ namespace Game.CardsControllers
                 {
                     if (Input.GetKeyDown(KeyCode.Alpha1 + i))
                     {
-                        selectedIndex   = i;
+                        selectedIndex = i;
                         selectionChanged = true;
                         break;
                     }
@@ -56,18 +56,14 @@ namespace Game.CardsControllers
             // Clamp in case the hand shrank after a card was played
             if (selectedIndex >= handCount)
             {
-                selectedIndex   = handCount - 1;
+                selectedIndex = handCount - 1;
                 selectionChanged = true;
             }
 
             if (selectionChanged)
-                NotifyHandPanel();
-
-            if (Input.GetKeyDown(activateKey))
             {
-                var hand = cardRuntime.HandCards;
-                if (selectedIndex < hand.Count)
-                    cardPlay.TryPlay(hand[selectedIndex].instanceId);
+                NotifyHandPanel();
+                ActivateSelectedCard();
             }
         }
 
@@ -80,9 +76,20 @@ namespace Game.CardsControllers
                 {
                     selectedIndex = i;
                     NotifyHandPanel();
+                    ActivateSelectedCard();
                     return;
                 }
             }
+        }
+
+        private void ActivateSelectedCard()
+        {
+            if (targeting != null)
+                targeting.Cancel();
+
+            var hand = cardRuntime.HandCards;
+            if (selectedIndex < hand.Count)
+                cardPlay.TryPlay(hand[selectedIndex].instanceId);
         }
 
         private void NotifyHandPanel()

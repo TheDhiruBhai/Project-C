@@ -14,11 +14,11 @@ namespace Game.UI
         [SerializeField] private GameObject grimoireRoot;
 
         [Header("Elemental Section")]
+        [SerializeField] private GameObject elementalFrame;   
         [SerializeField] private Transform elementalCardHolder;
-        // Next/Back buttons for elemental and utility are wired via UIButton
-        // OnClick events in the Inspector — no Button references needed here.
 
         [Header("Utility Section")]
+        [SerializeField] private GameObject utilityFrame;     
         [SerializeField] private Transform utilityCardHolder;
 
         [Header("Prefab")]
@@ -45,9 +45,6 @@ namespace Game.UI
         // Pooled views — one per slot in each holder (CardsPerPage each)
         private GrimoireCardView[] _elementalViews;
         private GrimoireCardView[] _utilityViews;
-
-        [SerializeField]
-        private bool isOpen = false;
 
         private void Awake()
         {
@@ -90,6 +87,10 @@ namespace Game.UI
             _isOpen = true;
 
             if (grimoireRoot != null) grimoireRoot.SetActive(true);
+
+            if (elementalFrame != null) elementalFrame.SetActive(true);
+            if (utilityFrame != null) utilityFrame.SetActive(false);
+
             if (cardPlayController != null) cardPlayController.SetMenuBlocking(true);
 
             RefreshCardLists();
@@ -102,7 +103,6 @@ namespace Game.UI
 
             UpdateNavButtons();
             UpdateHpDisplay();
-            isOpen = true;
         }
 
         public void Close()
@@ -112,7 +112,6 @@ namespace Game.UI
 
             if (grimoireRoot != null) grimoireRoot.SetActive(false);
             if (cardPlayController != null) cardPlayController.SetMenuBlocking(false);
-            isOpen = false;
         }
 
         // ── Pagination (public so UIButton OnClick events can call them) ───

@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviourPun
     private Vector2 lookInput;
     private bool sprintHeld;
     private bool inputReady = false;
-    private bool canLook = true;
 
     private bool IsGrounded()
     {
@@ -103,33 +102,19 @@ public class PlayerController : MonoBehaviourPun
 
         controller.Move(velocity * Time.deltaTime);
 
-        
+        float yaw = lookInput.x * lookSpeed * Time.deltaTime;
+        transform.Rotate(0f, yaw, 0f);
 
-        if (canLook)
-        {
-            float yaw = lookInput.x * lookSpeed * Time.deltaTime;
-            transform.Rotate(0f, yaw, 0f);
-            float pitch = lookInput.y * lookSpeed * Time.deltaTime;
-            currentPitch = Mathf.Clamp(currentPitch - pitch, -maxLookAngle, maxLookAngle);
-            mainCamera.transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
-        }
+        float pitch = lookInput.y * lookSpeed * Time.deltaTime;
+        currentPitch = Mathf.Clamp(currentPitch - pitch, -maxLookAngle, maxLookAngle);
+        mainCamera.transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             bool isLocked = Cursor.lockState == CursorLockMode.Locked;
             Cursor.lockState = isLocked ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = isLocked;
-
-            //On pressing escape, each player should be able to access the pause menu child of their HUD, allowing them to exit to the main menu or quit the game.
         }
     
      }
-
-    public void PauseLook() { 
-        canLook = false;
-    }
-
-    public void UnPauseLoo() { 
-        canLook = true;
-    }
 }
