@@ -1958,14 +1958,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grimoireRoot: {fileID: 5036327874107686154}
+  elementalFrame: {fileID: 0}
   elementalCardHolder: {fileID: 7096204380599119819}
+  utilityFrame: {fileID: 0}
   utilityCardHolder: {fileID: 7965597643762994306}
   cardViewPrefab: {fileID: 2388492665042840056, guid: 11e8f191a89ba1447b67946bad7d2e97, type: 3}
   playerHpText: {fileID: 0}
   health: {fileID: 0}
   shopController: {fileID: 3542469690602945381}
   cardPlayController: {fileID: 0}
-  isOpen: 0
 --- !u!114 &7173353074156549784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2011,14 +2012,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grimoireRoot: {fileID: 5036327874107686154}
+  elementalFrame: {fileID: 0}
   elementalCardHolder: {fileID: 7096204380599119819}
+  utilityFrame: {fileID: 0}
   utilityCardHolder: {fileID: 7965597643762994306}
   cardViewPrefab: {fileID: 2388492665042840056, guid: 11e8f191a89ba1447b67946bad7d2e97, type: 3}
   playerHpText: {fileID: 0}
   health: {fileID: 0}
   shopController: {fileID: 7173353074156549784}
   cardPlayController: {fileID: 0}
-  isOpen: 0
 --- !u!1 &3990174393453234651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,7 +2036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4650052132906209816
 Transform:
   m_ObjectHideFlags: 0
@@ -2216,7 +2218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7486604524841863743
 Transform:
   m_ObjectHideFlags: 0
