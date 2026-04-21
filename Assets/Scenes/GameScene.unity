@@ -13407,6 +13407,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5108235583983168942, guid: f6206fd94b9e75546a041581a534c9a4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536039511580754066, guid: f6206fd94b9e75546a041581a534c9a4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8318008456789378676, guid: f6206fd94b9e75546a041581a534c9a4, type: 3}
       propertyPath: crushTime
       value: 1.5

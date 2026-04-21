@@ -53,6 +53,8 @@ MonoBehaviour:
   cardsToActivate:
   - {fileID: 11400000, guid: 7747dbecc3a310442b24be8086aa3fe6, type: 2}
   crushTime: 3
+  damageAmount: 10
+  damageInterval: 1
 --- !u!95 &9183678772886659223
 Animator:
   serializedVersion: 7
@@ -135,6 +137,8 @@ GameObject:
   - component: {fileID: 3565845400982811129}
   - component: {fileID: 6926463189167212892}
   - component: {fileID: 5108235583983168942}
+  - component: {fileID: 4014893340698361037}
+  - component: {fileID: 6866872008556104787}
   m_Layer: 0
   m_Name: RightBlock
   m_TagString: Untagged
@@ -225,12 +229,45 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4014893340698361037
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6627258283327657109}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.00000047683716}
+--- !u!114 &6866872008556104787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6627258283327657109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6629216fc858cab479f923eeb273a413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7583337864105976457
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +280,8 @@ GameObject:
   - component: {fileID: 8935654569964809567}
   - component: {fileID: 5162804261042784266}
   - component: {fileID: 6536039511580754066}
+  - component: {fileID: 2967600835551997796}
+  - component: {fileID: 503391036820070165}
   m_Layer: 0
   m_Name: LeftBlock
   m_TagString: Untagged
@@ -333,9 +372,42 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2967600835551997796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7583337864105976457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6629216fc858cab479f923eeb273a413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &503391036820070165
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7583337864105976457}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.00000047683716}

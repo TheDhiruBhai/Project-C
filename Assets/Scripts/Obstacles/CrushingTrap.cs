@@ -75,6 +75,24 @@ public class CrushingTrap : Obstacle, IHoldable
         }
     }
 
+    public void OnBlockTriggerEnter(Collider other)
+    {
+        Debug.Log($"CrushingTrap trigger hit by {other.name} tag={other.tag}");
+        if (!other.CompareTag("Player")) return;
+
+        var playerHealth = other.GetComponent<Health>();
+        if (playerHealth != null && playersCrushed.Add(playerHealth))
+            StartCoroutine(DamagePlayer(playerHealth));
+    }
+
+    public void OnBlockTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+
+        var playerHealth = other.GetComponent<Health>();
+        playersCrushed.Remove(playerHealth);
+    }
+
     IEnumerator DamagePlayer(Health playerHealth)
     {
         while (playersCrushed.Contains(playerHealth))
