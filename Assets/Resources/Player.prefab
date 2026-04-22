@@ -4231,14 +4231,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grimoireRoot: {fileID: 6256867573103537679}
+  elementalFrame: {fileID: 0}
   elementalCardHolder: {fileID: 8386737249518454567}
+  utilityFrame: {fileID: 0}
   utilityCardHolder: {fileID: 6891768616571903983}
   cardViewPrefab: {fileID: 2388492665042840056, guid: 11e8f191a89ba1447b67946bad7d2e97, type: 3}
   playerHpText: {fileID: 0}
   health: {fileID: 0}
   shopController: {fileID: 3175447581068687141}
   cardPlayController: {fileID: 7645816451732553823}
-  isOpen: 0
 --- !u!114 &4379764769335150009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4284,14 +4285,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grimoireRoot: {fileID: 6256867573103537679}
+  elementalFrame: {fileID: 0}
   elementalCardHolder: {fileID: 8386737249518454567}
+  utilityFrame: {fileID: 0}
   utilityCardHolder: {fileID: 6891768616571903983}
   cardViewPrefab: {fileID: 2388492665042840056, guid: 11e8f191a89ba1447b67946bad7d2e97, type: 3}
   playerHpText: {fileID: 0}
   health: {fileID: 1683952864560332959}
   shopController: {fileID: 4379764769335150009}
   cardPlayController: {fileID: 7645816451732553823}
-  isOpen: 0
 --- !u!114 &9089353398931414898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4337,14 +4339,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grimoireRoot: {fileID: 6256867573103537679}
+  elementalFrame: {fileID: 0}
   elementalCardHolder: {fileID: 8386737249518454567}
+  utilityFrame: {fileID: 0}
   utilityCardHolder: {fileID: 6891768616571903983}
   cardViewPrefab: {fileID: 2388492665042840056, guid: 11e8f191a89ba1447b67946bad7d2e97, type: 3}
   playerHpText: {fileID: 0}
   health: {fileID: 1683952864560332959}
   shopController: {fileID: 9089353398931414898}
   cardPlayController: {fileID: 7645816451732553823}
-  isOpen: 0
 --- !u!1 &8759892417033009373
 GameObject:
   m_ObjectHideFlags: 0
@@ -4680,6 +4683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83946b13d5ea7a54a82300c943bfdcc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bonfireLight: {fileID: 0}
 --- !u!114 &2278472740586159271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4764,10 +4768,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardRuntime: {fileID: 6068578181031216018}
   cardPlay: {fileID: 7645816451732553823}
+  targeting: {fileID: 0}
   handPanel: {fileID: 2474822723938462151}
-  cycleLeftKey: 113
-  cycleRightKey: 101
-  activateKey: 102
+  scrollThreshold: 0.01
 --- !u!114 &5124769486550657089
 MonoBehaviour:
   m_ObjectHideFlags: 0

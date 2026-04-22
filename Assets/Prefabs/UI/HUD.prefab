@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -174, y: 217.6}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -2.9573, y: 217.6}
+  m_SizeDelta: {x: 542.0853, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7169944321768727881
 CanvasRenderer:
@@ -65,10 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Elemental Cards
+  m_text: Elemental Cards - You must sacrifice your health to gain these cards
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
-  m_sharedMaterial: {fileID: 4220994505706344489, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 124575e2f7cd6b54b9be7e419992de18, type: 2}
+  m_sharedMaterial: {fileID: 5395381775726879261, guid: 124575e2f7cd6b54b9be7e419992de18, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -151,7 +151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6198354424631761118
 Transform:
   m_ObjectHideFlags: 0
@@ -314,8 +314,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "0\t"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
-  m_sharedMaterial: {fileID: 4220994505706344489, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -637,8 +637,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "10\t"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
-  m_sharedMaterial: {fileID: 4220994505706344489, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -930,8 +930,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
-  m_sharedMaterial: {fileID: 4220994505706344489, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1817,6 +1817,7 @@ GameObject:
   - component: {fileID: 4705594851768151465}
   - component: {fileID: 7173353074156549784}
   - component: {fileID: 6806931772588041105}
+  - component: {fileID: 7754904885810258597}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -2021,6 +2022,20 @@ MonoBehaviour:
   health: {fileID: 0}
   shopController: {fileID: 7173353074156549784}
   cardPlayController: {fileID: 0}
+--- !u!114 &7754904885810258597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3849392556424982706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac5465ba6940de438bec189949ef616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 383758771430640507}
+  isPaused: 0
 --- !u!1 &3990174393453234651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,8 +2083,6 @@ GameObject:
   - component: {fileID: 4176381513883197414}
   - component: {fileID: 327078147966728138}
   - component: {fileID: 2727191674760904211}
-  - component: {fileID: 4632288242216847631}
-  - component: {fileID: 2816036356578897912}
   m_Layer: 5
   m_Name: GrimoireButton
   m_TagString: Untagged
@@ -2135,74 +2148,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4632288242216847631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4149788958391321608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 2727191674760904211}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6806931772588041105}
-        m_TargetAssemblyTypeName: Game.UI.GrimoirePanel, Assembly-CSharp
-        m_MethodName: Open
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
---- !u!114 &2816036356578897912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4149788958391321608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c31b4b7248a12e449e240c4f3dd9964, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4307668083883868270
 GameObject:
   m_ObjectHideFlags: 0
@@ -3837,8 +3782,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "15\t"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
-  m_sharedMaterial: {fileID: 4220994505706344489, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4160,8 +4105,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "10\t"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
-  m_sharedMaterial: {fileID: 4220994505706344489, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4432,8 +4377,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "20\t\t"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
-  m_sharedMaterial: {fileID: 4220994505706344489, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4535,8 +4480,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -173.99971, y: 217.59991}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -4.6298, y: 217.59991}
+  m_SizeDelta: {x: 538.7399, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4774189857805446178
 CanvasRenderer:
@@ -4566,10 +4511,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Utility Cards
+  m_text: Utility Cards - You must sacrifice your health to gain these cards
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
-  m_sharedMaterial: {fileID: 4220994505706344489, guid: 1d0e90ae9dad46c458e3c32cdf2f7f59, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

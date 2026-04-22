@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using Photon.Pun;
+using System;
 
 public class PlayerController : MonoBehaviourPun
 {
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviourPun
     private Vector2 lookInput;
     private bool sprintHeld;
     private bool inputReady = false;
+
+    public static event Action GrimoireControl;
 
     private bool IsGrounded()
     {
@@ -111,9 +114,8 @@ public class PlayerController : MonoBehaviourPun
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            bool isLocked = Cursor.lockState == CursorLockMode.Locked;
-            Cursor.lockState = isLocked ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = isLocked;
+            //Activate pause menu here
+            GrimoireControl?.Invoke();
         }
     
      }
