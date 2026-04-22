@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using Photon.Pun;
+using Game.Player;
 
 public class PlayerController : MonoBehaviourPun
 {
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviourPun
     private Vector2 lookInput;
     private bool sprintHeld;
     private bool inputReady = false;
+    private PlayerSpeedModifier speedModifier;
 
     private bool IsGrounded()
     {
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviourPun
 
         Controls = new PlayerControls();
         controller = GetComponent<CharacterController>();
+        speedModifier = GetComponentInChildren<PlayerSpeedModifier>();
 
         if (mainCamera == null)
             mainCamera = Camera.main;
@@ -86,6 +89,8 @@ public class PlayerController : MonoBehaviourPun
         if (m.sqrMagnitude > 1f) m = m.normalized;
 
         float currentSpeed = moveInput.y > 0 && sprintHeld ? sprintSpeed : moveSpeed;
+        if (speedModifier != null)
+            currentSpeed *= speedModifier.CurrentMultiplier;
 
         Vector3 horizontal =
         transform.forward * m.y +

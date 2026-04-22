@@ -1815,8 +1815,6 @@ GameObject:
   - component: {fileID: 7735825648662272055}
   - component: {fileID: 3542469690602945381}
   - component: {fileID: 4705594851768151465}
-  - component: {fileID: 7173353074156549784}
-  - component: {fileID: 6806931772588041105}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -1958,68 +1956,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grimoireRoot: {fileID: 5036327874107686154}
-  elementalFrame: {fileID: 0}
+  elementalFrame: {fileID: 4307668083883868270}
   elementalCardHolder: {fileID: 7096204380599119819}
-  utilityFrame: {fileID: 0}
+  utilityFrame: {fileID: 3990174393453234651}
   utilityCardHolder: {fileID: 7965597643762994306}
   cardViewPrefab: {fileID: 2388492665042840056, guid: 11e8f191a89ba1447b67946bad7d2e97, type: 3}
   playerHpText: {fileID: 0}
   health: {fileID: 0}
   shopController: {fileID: 3542469690602945381}
-  cardPlayController: {fileID: 0}
---- !u!114 &7173353074156549784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3849392556424982706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 422f47e222712a54fb7eff0dced66760, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardDatabase:
-  - {fileID: 11400000, guid: e4489da2b4f06514dbfaf7113628bc7a, type: 2}
-  - {fileID: 11400000, guid: e6755b2c4a2ea1242aadf437c31ed9fe, type: 2}
-  - {fileID: 11400000, guid: f5205b6d88f8c2642b9fd871dcf2f98d, type: 2}
-  - {fileID: 11400000, guid: 8e37022e431d5f7489a8d3499c623529, type: 2}
-  - {fileID: 11400000, guid: cec7380b9829c5942a319aa22ce9dd30, type: 2}
-  - {fileID: 11400000, guid: 911163b0f6d5ee945b47b5b80042fa5b, type: 2}
-  - {fileID: 11400000, guid: fbf27f554eda0fa44a1731a5b1f9a86a, type: 2}
-  - {fileID: 11400000, guid: fbc115ebc6c242d4a80e67bc95f84265, type: 2}
-  - {fileID: 11400000, guid: 8f4e75879b880044bad3f14a1ae77015, type: 2}
-  - {fileID: 11400000, guid: 2829c00bd92716a4d889f0401f46e876, type: 2}
-  - {fileID: 11400000, guid: 7747dbecc3a310442b24be8086aa3fe6, type: 2}
-  - {fileID: 11400000, guid: bbb9443a438f53342980717ce06f642b, type: 2}
-  - {fileID: 11400000, guid: ba06794def34be04592c4ad0cd365a59, type: 2}
-  - {fileID: 11400000, guid: 3907471a535d15f43990f4274171ae03, type: 2}
-  - {fileID: 11400000, guid: 2818079c6e9fb76438dc012fee08aa91, type: 2}
-  health: {fileID: 0}
-  playerElement: {fileID: 0}
-  cardRuntime: {fileID: 0}
-  confirmDialog: {fileID: 0}
---- !u!114 &6806931772588041105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3849392556424982706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba2a1d378373b3488c7d5a656821925, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grimoireRoot: {fileID: 5036327874107686154}
-  elementalFrame: {fileID: 0}
-  elementalCardHolder: {fileID: 7096204380599119819}
-  utilityFrame: {fileID: 0}
-  utilityCardHolder: {fileID: 7965597643762994306}
-  cardViewPrefab: {fileID: 2388492665042840056, guid: 11e8f191a89ba1447b67946bad7d2e97, type: 3}
-  playerHpText: {fileID: 0}
-  health: {fileID: 0}
-  shopController: {fileID: 7173353074156549784}
   cardPlayController: {fileID: 0}
 --- !u!1 &3990174393453234651
 GameObject:
@@ -2179,7 +2123,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6806931772588041105}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Game.UI.GrimoirePanel, Assembly-CSharp
         m_MethodName: Open
         m_Mode: 1
@@ -3746,7 +3690,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6806931772588041105}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Game.UI.GrimoirePanel, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1

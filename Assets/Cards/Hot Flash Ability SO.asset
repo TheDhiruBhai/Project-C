@@ -15,4 +15,4 @@ MonoBehaviour:
   targetType: 2
   lightRadius: 10
   lightDuration: 5
-  lightPrefab: {fileID: 7958639424384638895, guid: 2d1c78895ff80dc42a1eced58702899e, type: 3}
+  lightPrefab: {fileID: 8267876202515624407, guid: d7e5c50d272504e4f8ec0486b25081b6, type: 3}
