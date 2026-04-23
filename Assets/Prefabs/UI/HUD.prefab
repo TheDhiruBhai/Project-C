@@ -1837,12 +1837,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8204569268061490371}
   - {fileID: 4163403996716105568}
   - {fileID: 8185635239369393797}
   - {fileID: 7504448605203624742}
   - {fileID: 6280891514274658209}
   - {fileID: 4085407983751623056}
-  - {fileID: 8204569268061490371}
   - {fileID: 6198354424631761118}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3424,7 +3424,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6848737814259360424}
         m_TargetAssemblyTypeName: UIButton, Assembly-CSharp
-        m_MethodName: changeScene
+        m_MethodName: ChangeScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

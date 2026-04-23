@@ -23,4 +23,12 @@ public class UIButton : MonoBehaviour
         UIobject.SetActive(false);
 
     }
+
+    public void ChangeScene(string sceneName) {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+    }
+
+    public void QuitGame() {
+        Application.Quit();
+    }
 }

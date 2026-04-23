@@ -30,15 +30,19 @@ public class PauseScreen : MonoBehaviour
 
     private void TogglePause() {
 
-        Debug.Log("Toggling pause menu");
+    
         if (isPaused)
         {
             pauseMenu.SetActive(false);
             isPaused = false;
+            Cursor.visible = false;
         }
         else { 
             pauseMenu.SetActive(true);
             isPaused = true;
+            Cursor.visible = true;
         }
+
+        Debug.Log(Cursor.visible);
     }
 }

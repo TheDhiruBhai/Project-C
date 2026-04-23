@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviourPun
 
         Controls.Player.Jump.performed += _ => TryJump();
 
-        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
