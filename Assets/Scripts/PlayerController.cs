@@ -110,12 +110,15 @@ public class PlayerController : MonoBehaviourPun
 
         controller.Move(velocity * Time.deltaTime);
 
-        float yaw = lookInput.x * lookSpeed * Time.deltaTime;
-        transform.Rotate(0f, yaw, 0f);
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            float yaw = lookInput.x * lookSpeed * Time.deltaTime;
+            transform.Rotate(0f, yaw, 0f);
 
-        float pitch = lookInput.y * lookSpeed * Time.deltaTime;
-        currentPitch = Mathf.Clamp(currentPitch - pitch, -maxLookAngle, maxLookAngle);
-        mainCamera.transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
+            float pitch = lookInput.y * lookSpeed * Time.deltaTime;
+            currentPitch = Mathf.Clamp(currentPitch - pitch, -maxLookAngle, maxLookAngle);
+            mainCamera.transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
