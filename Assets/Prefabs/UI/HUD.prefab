@@ -1942,7 +1942,6 @@ MonoBehaviour:
   health: {fileID: 0}
   playerElement: {fileID: 0}
   cardRuntime: {fileID: 0}
-  confirmDialog: {fileID: 0}
 --- !u!114 &4705594851768151465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3088,7 +3087,6 @@ GameObject:
   - component: {fileID: 9217405381179772146}
   - component: {fileID: 4850031515376161177}
   - component: {fileID: 7373585985433948191}
-  - component: {fileID: 7967835686637482347}
   m_Layer: 5
   m_Name: CardHolder
   m_TagString: Untagged
@@ -3156,23 +3154,6 @@ MonoBehaviour:
   m_HorizontalFit: 2
   m_VerticalFit: 2
 --- !u!114 &7373585985433948191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6133353856604106393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87e3dc8f80a6ca14cac0fcc1e02f4852, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runtime: {fileID: 0}
-  playController: {fileID: 0}
-  selectionController: {fileID: 0}
-  contentRoot: {fileID: 4085407983751623056}
-  cardPrefab: {fileID: 8354221248923561067, guid: 651167db54863354c90ecc8925d7c6cc, type: 3}
---- !u!114 &7967835686637482347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4190,7 +4171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8668845970570231958
 RectTransform:
   m_ObjectHideFlags: 0

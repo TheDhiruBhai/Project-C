@@ -103,6 +103,8 @@ namespace Game.UI
 
             UpdateNavButtons();
             UpdateHpDisplay();
+
+            Cursor.visible = true;
         }
 
         public void Close()
@@ -112,6 +114,8 @@ namespace Game.UI
 
             if (grimoireRoot != null) grimoireRoot.SetActive(false);
             if (cardPlayController != null) cardPlayController.SetMenuBlocking(false);
+
+            Cursor.visible = false;
         }
 
         // ── Pagination (public so UIButton OnClick events can call them) ───

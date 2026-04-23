@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using Photon.Pun;
 using Game.Player;
+using System;
 
 public class PlayerController : MonoBehaviourPun
 {
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviourPun
     private bool sprintHeld;
     private bool inputReady = false;
     private PlayerSpeedModifier speedModifier;
+
+    public static event Action GrimoireControl;
 
     private bool IsGrounded()
     {
@@ -119,6 +122,7 @@ public class PlayerController : MonoBehaviourPun
             bool isLocked = Cursor.lockState == CursorLockMode.Locked;
             Cursor.lockState = isLocked ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = isLocked;
+            //GrimoireControl?.Invoke();
         }
     
      }
