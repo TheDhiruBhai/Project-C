@@ -774,6 +774,7 @@ GameObject:
   - component: {fileID: 2060554164814220197}
   - component: {fileID: 7866142855675229246}
   - component: {fileID: 8126497545480588008}
+  - component: {fileID: 8687430284141732531}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -923,6 +924,20 @@ MonoBehaviour:
   health: {fileID: 0}
   shopController: {fileID: 7866142855675229246}
   cardPlayController: {fileID: 7645816451732553823}
+--- !u!114 &8687430284141732531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911113376170841188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a69044d9fb57454c92a8e5f7100b7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 3567730077541026433}
+  isPaused: 0
 --- !u!1 &935653788329579491
 GameObject:
   m_ObjectHideFlags: 0
