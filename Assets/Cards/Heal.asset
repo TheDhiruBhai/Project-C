@@ -19,6 +19,6 @@ MonoBehaviour:
   elementRestriction: 0
   rangeMeters: 15
   durationSeconds: 0
-  hpCost: 0
+  hpCost: 15
   cooldownSeconds: 3
   ability: {fileID: 11400000, guid: 0c269f96e8c84504aa706af008ee0307, type: 2}
