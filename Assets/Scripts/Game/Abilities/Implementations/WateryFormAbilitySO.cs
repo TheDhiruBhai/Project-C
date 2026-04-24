@@ -3,11 +3,6 @@ using Game.World;
 
 namespace Game.Abilities
 {
-    /// <summary>
-    /// Allows the caster to pass through objects with gaps (steel gates) for a duration.
-    /// Targets Self — no world target needed.
-    /// TargetType should be Self on the CardDefinition.
-    /// </summary>
     [CreateAssetMenu(menuName = "Abilities/Watery Form")]
     public sealed class WateryFormAbilitySO : AbilitySO
     {
@@ -35,6 +30,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
+            PlayActivationSound(ctx.targetPoint);
+
             if (!ctx.TryGetCaster(out var caster) || caster == null) return;
             var wateryForm = caster.GetComponentInChildren<IWateryForm>();
             if (wateryForm != null) wateryForm.SetPassThrough(duration);

@@ -3,11 +3,6 @@ using Game.World;
 
 namespace Game.Abilities
 {
-    /// <summary>
-    /// Holds a moving/disappearing/pushable object completely still for a duration.
-    /// Valid when pointing at any object that implements IHoldable, including players.
-    /// TargetType should be WorldObject on the CardDefinition.
-    /// </summary>
     [CreateAssetMenu(menuName = "Abilities/Stable Ground")]
     public sealed class StableGroundAbilitySO : AbilitySO
     {
@@ -35,6 +30,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
+            PlayActivationSound(ctx.targetPoint);
+
             if (!ctx.TryGetTarget(out var target) || target == null) return;
             var holdable = target.GetComponentInParent<IHoldable>();
             if (holdable != null) holdable.HoldStill(holdSeconds);

@@ -3,12 +3,6 @@ using Game.World;
 
 namespace Game.Abilities
 {
-    /// <summary>
-    /// Spawns a temporary area light at the targeted world point.
-    /// TargetType should be Point on the CardDefinition.
-    ///
-    /// Setup: Assign lightPrefab to a prefab containing a TemporaryAreaLight component.
-    /// </summary>
     [CreateAssetMenu(menuName = "Abilities/Hot Flash")]
     public sealed class HotFlashAbilitySO : AbilitySO
     {
@@ -27,6 +21,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
+            PlayActivationSound(ctx.targetPoint);
+
             if (lightPrefab == null)
             {
                 Debug.LogWarning("[HotFlash] No light prefab assigned on HotFlashAbilitySO.");

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Bonfire Ability SO
   m_EditorClassIdentifier: 
   targetType: 1
+  activationClip: {fileID: 8300000, guid: 15f5ad793d3020e43bc598eea7b98e89, type: 3}
+  volume: 1
   lightSeconds: 10

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Wind Walk Ability SO
   m_EditorClassIdentifier: 
   targetType: 1
+  activationClip: {fileID: 8300000, guid: 09e628901abe1254b9bcdb8a50839c3a, type: 3}
+  volume: 1
   speedMultiplier: 2
   duration: 10

@@ -3,12 +3,6 @@ using Game.World;
 
 namespace Game.Abilities
 {
-    /// <summary>
-    /// Pulls a movable object toward the caster's side.
-    /// Valid when the caster is "past" the object — i.e. the caster lies
-    /// between the object and its far fixed point.
-    /// TargetType should be WorldObject on the CardDefinition.
-    /// </summary>
     [CreateAssetMenu(menuName = "Abilities/Pulling Gust")]
     public sealed class PullingGustAbilitySO : AbilitySO
     {
@@ -45,6 +39,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
+            PlayActivationSound(ctx.targetPoint);
+
             if (!ctx.TryGetTarget(out var target) || target == null) return;
             if (!ctx.TryGetCaster(out var caster) || caster == null) return;
             var movable = target.GetComponentInParent<IMovable>();

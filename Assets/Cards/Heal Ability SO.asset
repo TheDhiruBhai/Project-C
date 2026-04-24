@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Heal Ability SO
   m_EditorClassIdentifier: 
   targetType: 4
+  activationClip: {fileID: 8300000, guid: 7fa57cb35080550498da3c2310d228ef, type: 3}
+  volume: 1
   healAmount: 15

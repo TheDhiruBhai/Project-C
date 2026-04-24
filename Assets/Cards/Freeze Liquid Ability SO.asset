@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Freeze Liquid Ability SO
   m_EditorClassIdentifier: 
   targetType: 3
+  activationClip: {fileID: 8300000, guid: 78d1e2e4d7c218449803fd8ac80235f3, type: 3}
+  volume: 1

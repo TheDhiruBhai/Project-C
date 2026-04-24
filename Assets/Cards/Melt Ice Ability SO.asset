@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Melt Ice Ability SO
   m_EditorClassIdentifier: 
   targetType: 3
+  activationClip: {fileID: 8300000, guid: ae782ae6e350c3f408a4a90dddaa572b, type: 3}
+  volume: 1

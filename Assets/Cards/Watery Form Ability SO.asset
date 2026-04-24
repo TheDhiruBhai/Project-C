@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Watery Form Ability SO
   m_EditorClassIdentifier: 
   targetType: 1
+  activationClip: {fileID: 8300000, guid: 0f80f208f05ee4a43b790ed5888aeede, type: 3}
+  volume: 1
   duration: 10

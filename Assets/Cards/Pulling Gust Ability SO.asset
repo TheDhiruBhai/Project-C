@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Pulling Gust Ability SO
   m_EditorClassIdentifier: 
   targetType: 3
+  activationClip: {fileID: 8300000, guid: 4612fc72908dcae49bf0a0b080019342, type: 3}
+  volume: 1

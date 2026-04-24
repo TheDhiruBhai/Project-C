@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Hot Flash Ability SO
   m_EditorClassIdentifier: 
   targetType: 2
+  activationClip: {fileID: 8300000, guid: 86f46b40e9047124f95dafab060f3be8, type: 3}
+  volume: 1
   lightRadius: 10
   lightDuration: 5
   lightPrefab: {fileID: 8267876202515624407, guid: d7e5c50d272504e4f8ec0486b25081b6, type: 3}

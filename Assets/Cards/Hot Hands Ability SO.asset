@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Hot Hands Ability SO
   m_EditorClassIdentifier: 
   targetType: 3
+  activationClip: {fileID: 8300000, guid: 9cb8648d6424cf842b499d8a50c007af, type: 3}
+  volume: 1
   burnSeconds: 3

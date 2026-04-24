@@ -28,6 +28,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
+            PlayActivationSound(ctx.targetPoint);
+
             if (!ctx.TryGetTarget(out var target) || target == null) return;
             var flammable = target.GetComponentInParent<IFlammable>();
             if (flammable != null) flammable.Ignite(burnSeconds);

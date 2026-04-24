@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Plant Growth Ability SO
   m_EditorClassIdentifier: 
   targetType: 3
+  activationClip: {fileID: 8300000, guid: b5002ad78284c9849bde7f254d0631b3, type: 3}
+  volume: 1
