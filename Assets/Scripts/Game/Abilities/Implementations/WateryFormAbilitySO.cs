@@ -30,9 +30,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
-            PlayActivationSound(ctx.targetPoint);
-
             if (!ctx.TryGetCaster(out var caster) || caster == null) return;
+            PlayActivationSound(caster.transform.position);
             var wateryForm = caster.GetComponentInChildren<IWateryForm>();
             if (wateryForm != null) wateryForm.SetPassThrough(duration);
         }

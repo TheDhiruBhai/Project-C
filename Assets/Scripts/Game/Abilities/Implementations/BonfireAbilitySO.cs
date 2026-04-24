@@ -26,9 +26,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
-            PlayActivationSound(ctx.targetPoint);
-
             if (!ctx.TryGetCaster(out var caster) || caster == null) return;
+            PlayActivationSound(caster.transform.position);
             var receiver = caster.GetComponentInChildren<ILightReceiver>();
             if (receiver != null) receiver.Illuminate(lightSeconds);
         }

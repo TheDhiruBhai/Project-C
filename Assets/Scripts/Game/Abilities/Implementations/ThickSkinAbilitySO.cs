@@ -30,9 +30,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
-            PlayActivationSound(ctx.targetPoint);
-
             if (!ctx.TryGetCaster(out var caster) || caster == null) return;
+            PlayActivationSound(caster.transform.position);
             var immune = caster.GetComponentInChildren<IDamageImmune>();
             if (immune != null) immune.SetInvulnerable(duration);
         }

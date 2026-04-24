@@ -44,9 +44,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
-            PlayActivationSound(ctx.targetPoint);
-
             if (!ctx.TryGetCaster(out var caster) || caster == null) return;
+            PlayActivationSound(caster.transform.position);
             var modifier = caster.GetComponentInChildren<ISpeedModifiable>();
             if (modifier != null) modifier.ApplySpeedMultiplier(speedMultiplier, duration);
         }
