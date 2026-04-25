@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Unlock Door Ability SO
   m_EditorClassIdentifier: 
   targetType: 3
+  activationClip: {fileID: 8300000, guid: 78913e617d54d1d439600e9349900096, type: 3}
+  volume: 1

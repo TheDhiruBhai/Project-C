@@ -105,6 +105,7 @@ namespace Game.UI
             UpdateHpDisplay();
 
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         public void Close()
@@ -116,6 +117,7 @@ namespace Game.UI
             if (cardPlayController != null) cardPlayController.SetMenuBlocking(false);
 
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         // ── Pagination (public so UIButton OnClick events can call them) ───
@@ -236,6 +238,13 @@ namespace Game.UI
                 else
                     _elementalCards.Add(def);
             }
+
+            _elementalCards.Sort((a, b) =>
+            {
+                int aScore = a.cardType == CardType.Buff ? 1 : 0;
+                int bScore = b.cardType == CardType.Buff ? 1 : 0;
+                return aScore.CompareTo(bScore);
+            });
         }
 
         ///Returns the index of the last valid page (0-based).

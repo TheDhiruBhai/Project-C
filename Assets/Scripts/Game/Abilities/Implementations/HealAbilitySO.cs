@@ -26,6 +26,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
+            PlayActivationSound(ctx.targetPoint);
+
             if (!ctx.TryGetTarget(out var target) || target == null) return;
             var hp = target.GetComponentInParent<IHealthTarget>();
             if (hp != null) hp.Heal(healAmount);

@@ -30,7 +30,6 @@ namespace Game.Abilities
                 return false;
             }
 
-            // Design doc: not valid while in the air.
             // We check for a grounded flag via the PlayerGroundCheck helper if present.
             var groundCheck = caster.GetComponentInChildren<PlayerGroundCheck>();
             if (groundCheck != null && !groundCheck.IsGrounded)
@@ -46,6 +45,7 @@ namespace Game.Abilities
         public override void Activate(AbilityContext ctx)
         {
             if (!ctx.TryGetCaster(out var caster) || caster == null) return;
+            PlayActivationSound(caster.transform.position);
             var modifier = caster.GetComponentInChildren<ISpeedModifiable>();
             if (modifier != null) modifier.ApplySpeedMultiplier(speedMultiplier, duration);
         }

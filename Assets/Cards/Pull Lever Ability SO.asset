@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Pull Lever Ability SO
   m_EditorClassIdentifier: 
   targetType: 3
+  activationClip: {fileID: 8300000, guid: 639161213af22cf409d8292f09c5ee37, type: 3}
+  volume: 1

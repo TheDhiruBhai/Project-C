@@ -6,15 +6,12 @@ namespace Game.World
     public sealed class TemporaryAreaLight : MonoBehaviour, IAreaLightSpawner
     {
         [SerializeField] private Light pointLight;
-        [SerializeField] private float defaultRadius = 10f;
-        [SerializeField] private float defaultDuration = 5f;
 
         private void Reset()
         {
             if (pointLight == null) pointLight = GetComponent<Light>();
         }
 
-        ///Call immediately after instantiation to configure and start the timer.
         public void Initialize(float radius, float duration)
         {
             if (pointLight != null) pointLight.range = radius;

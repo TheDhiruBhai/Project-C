@@ -3,12 +3,6 @@ using Game.World;
 
 namespace Game.Abilities
 {
-    /// <summary>
-    /// Pushes a movable object toward its far point.
-    /// Valid when the caster is "behind" the object — i.e. the object lies
-    /// between the caster and the object's other fixed point.
-    /// TargetType should be WorldObject on the CardDefinition.
-    /// </summary>
     [CreateAssetMenu(menuName = "Abilities/Pushing Gust")]
     public sealed class PushingGustAbilitySO : AbilitySO
     {
@@ -46,6 +40,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
+            PlayActivationSound(ctx.targetPoint);
+
             if (!ctx.TryGetTarget(out var target) || target == null) return;
             if (!ctx.TryGetCaster(out var caster) || caster == null) return;
             var movable = target.GetComponentInParent<IMovable>();

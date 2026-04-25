@@ -24,6 +24,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
+            PlayActivationSound(ctx.targetPoint);
+
             if (!ctx.TryGetTarget(out var target) || target == null) return;
             var lever = target.GetComponentInParent<ILeverable>();
             if (lever != null) lever.Toggle();

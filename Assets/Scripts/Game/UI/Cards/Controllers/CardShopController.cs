@@ -16,11 +16,6 @@ namespace Game.UI
         [SerializeField] private PlayerElement playerElement;
         [SerializeField] private CardsControllers.CardRuntimeController cardRuntime;
 
-        [Header("UI References")]
-        [SerializeField] private ConfirmPurchaseDialog confirmDialog;
-
-        // ── Public API ─────────────────────────────────────────────────────
-
         ///Returns every card this player is allowed to see in the shop.
       
         
@@ -60,13 +55,9 @@ namespace Game.UI
                 return;
             }
 
-            if (confirmDialog != null)
-                confirmDialog.Show(def, OnPurchaseConfirmed);
             else
                 OnPurchaseConfirmed(def); // No dialog — purchase immediately.
         }
-
-        // ── Internal ───────────────────────────────────────────────────────
 
         private void OnPurchaseConfirmed(CardDefinition def)
         {

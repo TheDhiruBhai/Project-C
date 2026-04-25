@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using Photon.Pun;
+using Game.Player;
 using System;
 
 public class PlayerController : MonoBehaviourPun
@@ -23,6 +24,9 @@ public class PlayerController : MonoBehaviourPun
     private Vector2 lookInput;
     private bool sprintHeld;
     private bool inputReady = false;
+    private PlayerSpeedModifier speedModifier;
+
+    public static event Action GrimoireControl;
 
     public static event Action GrimoireControl;
 
@@ -48,6 +52,7 @@ public class PlayerController : MonoBehaviourPun
 
         Controls = new PlayerControls();
         controller = GetComponent<CharacterController>();
+        speedModifier = GetComponentInChildren<PlayerSpeedModifier>();
 
         if (mainCamera == null)
             mainCamera = Camera.main;
@@ -88,6 +93,8 @@ public class PlayerController : MonoBehaviourPun
         if (m.sqrMagnitude > 1f) m = m.normalized;
 
         float currentSpeed = moveInput.y > 0 && sprintHeld ? sprintSpeed : moveSpeed;
+        if (speedModifier != null)
+            currentSpeed *= speedModifier.CurrentMultiplier;
 
         Vector3 horizontal =
         transform.forward * m.y +
@@ -104,17 +111,24 @@ public class PlayerController : MonoBehaviourPun
 
         controller.Move(velocity * Time.deltaTime);
 
-        float yaw = lookInput.x * lookSpeed * Time.deltaTime;
-        transform.Rotate(0f, yaw, 0f);
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            float yaw = lookInput.x * lookSpeed * Time.deltaTime;
+            transform.Rotate(0f, yaw, 0f);
 
-        float pitch = lookInput.y * lookSpeed * Time.deltaTime;
-        currentPitch = Mathf.Clamp(currentPitch - pitch, -maxLookAngle, maxLookAngle);
-        mainCamera.transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
+            float pitch = lookInput.y * lookSpeed * Time.deltaTime;
+            currentPitch = Mathf.Clamp(currentPitch - pitch, -maxLookAngle, maxLookAngle);
+            mainCamera.transform.localRotation = Quaternion.Euler(currentPitch, 0f, 0f);
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             //Activate pause menu here
             GrimoireControl?.Invoke();
+            bool isLocked = Cursor.lockState == CursorLockMode.Locked;
+            Cursor.lockState = isLocked ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = isLocked;
+            //GrimoireControl?.Invoke();
         }
     
      }

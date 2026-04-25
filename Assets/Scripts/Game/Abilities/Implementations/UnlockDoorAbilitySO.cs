@@ -32,6 +32,8 @@ namespace Game.Abilities
 
         public override void Activate(AbilityContext ctx)
         {
+            PlayActivationSound(ctx.targetPoint);
+
             if (!ctx.TryGetTarget(out var target) || target == null) return;
             var lockable = target.GetComponentInParent<ILockable>();
             if (lockable != null) lockable.Unlock();

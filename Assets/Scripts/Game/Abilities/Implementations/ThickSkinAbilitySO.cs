@@ -3,10 +3,6 @@ using Game.World;
 
 namespace Game.Abilities
 {
-    /// <summary>
-    /// Makes the caster completely invulnerable to damage for a duration.
-    /// TargetType should be Self on the CardDefinition.
-    /// </summary>
     [CreateAssetMenu(menuName = "Abilities/Thick Skin")]
     public sealed class ThickSkinAbilitySO : AbilitySO
     {
@@ -35,6 +31,7 @@ namespace Game.Abilities
         public override void Activate(AbilityContext ctx)
         {
             if (!ctx.TryGetCaster(out var caster) || caster == null) return;
+            PlayActivationSound(caster.transform.position);
             var immune = caster.GetComponentInChildren<IDamageImmune>();
             if (immune != null) immune.SetInvulnerable(duration);
         }

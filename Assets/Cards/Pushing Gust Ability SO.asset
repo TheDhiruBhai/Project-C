@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Pushing Gust Ability SO
   m_EditorClassIdentifier: 
   targetType: 3
+  activationClip: {fileID: 8300000, guid: 6a04713b825629142930f6e9fb3acc58, type: 3}
+  volume: 1
