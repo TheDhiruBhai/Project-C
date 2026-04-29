@@ -9,6 +9,8 @@ TagManager:
   - NetworkAbilityBridge
   - Water
   - handPanelTag
+  - LobbyCamera
+  - HUD
   layers:
   - Default
   - TransparentFX

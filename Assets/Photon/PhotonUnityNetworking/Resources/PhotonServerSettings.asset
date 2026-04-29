@@ -49,6 +49,23 @@ MonoBehaviour:
   - RPC_StartMove
   - RPC_TurnOff
   - RPC_TurnOn
+  - RPC_FinalizeCharacters
+  - RPC_ReceiveMessage
+  - RPC_ResetAllReady
+  - RPC_TriggerGameOver
+  - RPC_TriggerWin
+  - RPC_Receive
+  - RPC_TriggerLose
+  - RPC_Move
+  - RPC_Grow
+  - RPC_BurnOut
+  - RPC_Illuminate
+  - RPC_LightOff
+  - RPC_Toggle
+  - RPC_Heal
+  - RPC_TakeDamage
+  - RPC_Unlock
+  - RPC_SpawnLight
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

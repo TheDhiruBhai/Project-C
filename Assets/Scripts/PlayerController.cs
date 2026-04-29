@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviourPun
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float maxLookAngle = 90f;
+    [SerializeField] private Animator animator;
+    [SerializeField] private float animBlendSpeed = 10f;
 
     private float verticalVelocity;
     private float currentPitch = 0f;
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviourPun
         if (!IsGrounded()) return;
 
         verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        animator?.SetTrigger("jump");
     }
 
     private void Awake()
@@ -110,6 +113,17 @@ public class PlayerController : MonoBehaviourPun
 
         controller.Move(velocity * Time.deltaTime);
 
+        // ── NEW (snaps cleanly to 0 when idle) ────────────────────────────────────
+        float horizontalSpeed = new Vector2(velocity.x, velocity.z).magnitude;
+        float targetWalk = horizontalSpeed / moveSpeed;
+
+        // Snap to exactly 0 if below threshold — kills the 1.022e-42 float drift
+        if (targetWalk < 0.01f) targetWalk = 0f;
+
+        float current = animator != null ? animator.GetFloat("walking") : 0f;
+        float smoothed = Mathf.MoveTowards(current, targetWalk, Time.deltaTime * animBlendSpeed);
+        animator?.SetFloat("walking", smoothed);
+
         if (Cursor.lockState == CursorLockMode.Locked)
         {
             float yaw = lookInput.x * lookSpeed * Time.deltaTime;
@@ -129,4 +143,14 @@ public class PlayerController : MonoBehaviourPun
         }
     
      }
+
+    public void ActivatePlayerCamera()
+    {
+        if (!photonView.IsMine) return;
+        if (mainCamera == null)
+            mainCamera = GetComponentInChildren<Camera>(true);
+        if (mainCamera != null)
+            mainCamera.gameObject.SetActive(true);
+    }
+
 }

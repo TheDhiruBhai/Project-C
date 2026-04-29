@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Photon.Pun;
 
 namespace Game.World
 {
@@ -15,15 +16,24 @@ namespace Game.World
         [SerializeField] private UnityEngine.Events.UnityEvent onToggleOn;
         [SerializeField] private UnityEngine.Events.UnityEvent onToggleOff;
 
+        private PhotonView _pv;
+
         public bool IsToggled => toggled;
 
+        private void Awake() => _pv = GetComponent<PhotonView>();
         private void Start() => ApplyVisual();
 
         public void Toggle()
         {
-            toggled = !toggled;
-            ApplyVisual();
+            // Any client can pull a lever — broadcast the new state to all
+            _pv.RPC(nameof(RPC_Toggle), RpcTarget.All, !toggled);
+        }
 
+        [PunRPC]
+        private void RPC_Toggle(bool newState)
+        {
+            toggled = newState;
+            ApplyVisual();
             if (toggled) onToggleOn?.Invoke();
             else onToggleOff?.Invoke();
         }
@@ -31,8 +41,8 @@ namespace Game.World
         private void ApplyVisual()
         {
             if (leverArm == null) return;
-            float angle = toggled ? toggledAngle : untoggledAngle;
-            leverArm.localRotation = Quaternion.Euler(angle, 0f, 0f);
+            leverArm.localRotation = Quaternion.Euler(
+                toggled ? toggledAngle : untoggledAngle, 0f, 0f);
         }
     }
 }

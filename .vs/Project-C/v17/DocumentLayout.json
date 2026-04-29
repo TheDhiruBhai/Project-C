@@ -1,17 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\",
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|c:\\users\\calli\\onedrive\\desktop\\game dev stuff\\project-c\\assets\\scripts\\game\\ui\\cards\\controllers\\grimoirepanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|c:\\users\\admin\\documents\\github\\project-c\\assets\\scripts\\photonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\photonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|c:\\users\\admin\\documents\\github\\project-c\\assets\\scripts\\intromanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\intromanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|c:\\users\\admin\\documents\\github\\project-c\\assets\\scripts\\chatmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\chatmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|c:\\users\\admin\\documents\\github\\project-c\\assets\\scripts\\gametimermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gametimermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\assets\\scripts\\characterselectui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characterselectui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\assets\\scripts\\game\\ui\\cards\\controllers\\grimoirepanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\ui\\cards\\controllers\\grimoirepanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|c:\\users\\calli\\onedrive\\desktop\\game dev stuff\\project-c\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\assets\\scripts\\game\\ui\\uibutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\assets\\scripts\\game\\ui\\uibutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4812663F-2CD3-6018-6130-220034D12E9B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\ui\\uibutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -27,36 +47,98 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GrimoirePanel.cs",
-              "DocumentMoniker": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\Game\\UI\\Cards\\Controllers\\GrimoirePanel.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\UI\\Cards\\Controllers\\GrimoirePanel.cs",
-              "ToolTip": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\Game\\UI\\Cards\\Controllers\\GrimoirePanel.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Game\\UI\\Cards\\Controllers\\GrimoirePanel.cs",
-              "ViewState": "AgIAAN0AAAAAAAAAAAAqwHIAAAAbAAAAAAAAAA==",
+              "Title": "PhotonManager.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\PhotonManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PhotonManager.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\PhotonManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PhotonManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T14:09:31.306Z",
+              "WhenOpened": "2026-04-27T02:21:47.468Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PlayerController.cs",
-              "DocumentMoniker": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\PlayerController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
-              "ToolTip": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\PlayerController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAswIIAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "GameTimerManager.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\GameTimerManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameTimerManager.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\GameTimerManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameTimerManager.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAwwLEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T18:41:54.29Z",
+              "WhenOpened": "2026-04-27T01:01:40.082Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "ChatManager.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\ChatManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ChatManager.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\ChatManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ChatManager.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAiwGYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T00:53:17.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IntroManager.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\IntroManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\IntroManager.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\IntroManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\IntroManager.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAADwv1sAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T00:52:35.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CharacterSelectUI.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\CharacterSelectUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CharacterSelectUI.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\CharacterSelectUI.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CharacterSelectUI.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAwEMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T00:04:50.565Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GrimoirePanel.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\Game\\UI\\Cards\\Controllers\\GrimoirePanel.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\UI\\Cards\\Controllers\\GrimoirePanel.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\Game\\UI\\Cards\\Controllers\\GrimoirePanel.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\UI\\Cards\\Controllers\\GrimoirePanel.cs",
+              "ViewState": "AgIAAN0AAAAAAAAAAAAqwHIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T14:09:31.306Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAswIIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T18:41:54.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "UIButton.cs",
-              "DocumentMoniker": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\Game\\UI\\UIButton.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\Game\\UI\\UIButton.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\UI\\UIButton.cs",
-              "ToolTip": "C:\\Users\\calli\\OneDrive\\Desktop\\Game Dev Stuff\\Project-C\\Assets\\Scripts\\Game\\UI\\UIButton.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\Project-C\\Assets\\Scripts\\Game\\UI\\UIButton.cs",
               "RelativeToolTip": "Assets\\Scripts\\Game\\UI\\UIButton.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

@@ -6,32 +6,44 @@ public class GameSpawner : MonoBehaviour
     [Header("Spawn Points")]
     public Transform[] spawnPoints;
 
-    void Start()
+    [Header("Character Prefabs")]
+    // 0=Fire, 1=Water, 2=Earth, 3=Wind
+    public string[] characterPrefabNames = { "FirePlayer", "WaterPlayer", "EarthPlayer", "WindPlayer" };
+
+    [Header("Lobby Fallback Prefab")]
+    public string fallbackPrefabName = "Player";
+
+    public GameObject SpawnLobbyPlayer(int slotIndex)
     {
-        SpawnPlayer();
+        return SpawnPrefab(fallbackPrefabName, slotIndex);
     }
 
-    void SpawnPlayer()
+    public GameObject RespawnAsSelected(GameObject currentObject, int elementIndex, int slotIndex)
     {
-        // Pick a random spawn point
-        Vector3 spawnPos = Vector3.zero;
-        Quaternion spawnRot = Quaternion.identity;
+        if (currentObject != null)
+            PhotonNetwork.Destroy(currentObject);
 
-        if (spawnPoints.Length > 0)
+        string prefabName = fallbackPrefabName;
+
+        if (elementIndex >= 0 && elementIndex < characterPrefabNames.Length)
+            prefabName = characterPrefabNames[elementIndex];
+
+        return SpawnPrefab(prefabName, slotIndex);
+    }
+
+    private GameObject SpawnPrefab(string prefabName, int slotIndex)
+    {
+        Vector3 pos = Vector3.zero;
+        Quaternion rot = Quaternion.identity;
+
+        if (spawnPoints != null && slotIndex >= 0 && slotIndex < spawnPoints.Length)
         {
-            int index = Random.Range(0, spawnPoints.Length);
-            spawnPos = spawnPoints[index].position;
-            spawnRot = spawnPoints[index].rotation;
+            pos = spawnPoints[slotIndex].position;
+            rot = spawnPoints[slotIndex].rotation;
         }
 
-        // Spawn the player prefab across the network
-        // "Player" must match your prefab name in Resources folder
-        GameObject player = PhotonNetwork.Instantiate(
-            "Player",
-            spawnPos,
-            spawnRot
-        );
-
-        Debug.Log("Spawned: " + PhotonNetwork.NickName);
+        GameObject go = PhotonNetwork.Instantiate(prefabName, pos, rot);
+        Debug.Log("[GameSpawner] Spawned " + prefabName + " at slot " + slotIndex);
+        return go;
     }
 }
